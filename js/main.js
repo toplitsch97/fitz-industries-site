@@ -47,29 +47,33 @@
     gsap.set('.hero__sub', { opacity: 0, y: 24 });
   }
 
+  /* Keep the loader short — a long intro makes visitors bounce */
+  var LOADER_MS = 1500;
   function runPreloader() {
     if (reduce) { finish(); return; }
     let revealed = false;
     const reveal = () => {
       if (revealed) return;
       revealed = true;
-      gsap.to('.preloader__video', { opacity: 0, duration: 0.6 });
+      gsap.to('.preloader__video', { opacity: 0, duration: 0.45 });
       gsap.to('.preloader__curtain', {
-        scaleY: 1, duration: 0.9, ease: 'expo.inOut',
+        scaleY: 1, duration: 0.6, ease: 'expo.inOut',
         onComplete: finish,
       });
     };
 
-    if (!preVideo) { reveal(); return; }
+    if (!preVideo) { setTimeout(reveal, 400); return; }
 
+    /* Play the branded clip fast so it still completes within the short window */
+    preVideo.playbackRate = 5;
     preVideo.addEventListener('ended', reveal);
     const p = preVideo.play();
     if (p && typeof p.catch === 'function') {
       /* Autoplay blocked → don't trap the visitor on the loader */
-      p.catch(() => { setTimeout(reveal, 1400); });
+      p.catch(() => { setTimeout(reveal, 600); });
     }
-    /* Safety net in case the video stalls or 'ended' never fires */
-    setTimeout(reveal, 10000);
+    /* Hard cap: never hold the visitor longer than this */
+    setTimeout(reveal, LOADER_MS);
   }
   function finish() {
     pre.style.display = 'none';
@@ -80,7 +84,13 @@
     buildMap();
     ScrollTrigger.refresh();
   }
-  window.addEventListener('load', runPreloader);
+  /* Start the (short) loader as soon as the DOM is ready — don't wait for every
+     video/image to finish downloading, which is what made the intro feel endless */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runPreloader);
+  } else {
+    runPreloader();
+  }
 
   /* ---------- Scenes ---------- */
   function buildScenes() {
