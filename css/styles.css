@@ -105,8 +105,12 @@ img{display:block;max-width:100%}
 .showcase__intro h2{font-family:var(--display);font-size:clamp(2.4rem,7.5vw,6rem);line-height:1;font-weight:400;margin-bottom:1.4rem;text-transform:uppercase;letter-spacing:.01em}
 .showcase__hint{color:var(--muted);font-size:.95rem;line-height:1.7;font-weight:300;max-width:44ch}
 
-.brand-grid{margin:0 var(--pad);display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));
+.brand-grid{margin:0 var(--pad);display:grid;grid-template-columns:repeat(4,1fr);
   background:var(--bg);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+/* 11 own brands → 4+4+3 on desktop (avoid a lone orphan), graceful steps down */
+@media(max-width:1080px){.brand-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:620px){.brand-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:400px){.brand-grid{grid-template-columns:1fr}}
 .brand-cell{position:relative;background:var(--bg);aspect-ratio:5/4;display:flex;align-items:center;justify-content:center;
   overflow:hidden;isolation:isolate;border-right:1px solid var(--line);border-bottom:1px solid var(--line);transition:background .5s var(--ease)}
 .brand-cell::before{content:"";position:absolute;inset:0;z-index:0;opacity:0;transition:opacity .55s var(--ease);
@@ -136,7 +140,7 @@ img{display:block;max-width:100%}
 .brand-cell__sector{font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--accent);font-weight:600}
 .brand-cell__name{font-family:var(--sans);font-size:.98rem;font-weight:600;color:var(--text);letter-spacing:.01em}
 .brand-cell__loc{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-.brand-cell--accent .brand-cell__no,.brand-cell--accent .brand-cell__plate{opacity:.9}
+.brand-cell--accent .brand-cell__no{opacity:.9}
 .brand-cell--accent::after{content:"";position:absolute;inset:0;z-index:0;
   background:radial-gradient(120% 90% at 50% 120%,rgba(134,168,184,.10),transparent 72%)}
 /* spotlight: dim siblings when hovering the grid */
@@ -151,7 +155,11 @@ img{display:block;max-width:100%}
 
 /* ===== Beteiligungen / Partner ===== */
 .holdings{position:relative;background:var(--bg);padding-bottom:6vh;border-top:1px solid var(--line)}
-.partner-grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr))}
+/* exactly 5 partners → one balanced row on desktop, graceful steps down */
+.partner-grid{grid-template-columns:repeat(5,1fr)}
+@media(max-width:1080px){.partner-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:620px){.partner-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:400px){.partner-grid{grid-template-columns:1fr}}
 .partner-grid .brand-cell__plate{width:82%;height:90px;padding:18px 26px}
 .brand-cell__word{font-family:var(--display);font-size:1.7rem;letter-spacing:.03em;text-transform:uppercase;color:#0b0b0b}
 
