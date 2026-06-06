@@ -18,6 +18,21 @@
     hRow.innerHTML += hRow.innerHTML; // double the content
   }
 
+  /* ---------- flag marquee (Präsenz): build + duplicate for seamless loop ---------- */
+  const flagTrack = document.getElementById('flagTrack');
+  if (flagTrack) {
+    const flags = [
+      { c: 'ch', n: 'Schweiz' }, { c: 'li', n: 'Liechtenstein' }, { c: 'at', n: 'Österreich' },
+      { c: 'de', n: 'Deutschland' }, { c: 'lu', n: 'Luxemburg' }, { c: 'cz', n: 'Tschechien' },
+      { c: 'bg', n: 'Bulgarien' }, { c: 'es', n: 'Spanien' }, { c: 'gb-eng', n: 'England' },
+      { c: 'us', n: 'USA' }, { c: 'ae', n: 'VAE' }, { c: 'th', n: 'Thailand' }, { c: 'tr', n: 'Türkei' },
+    ];
+    const row = flags.map((f) =>
+      `<span class="flag"><img src="assets/flags/${f.c}.svg" alt="${f.n}" loading="lazy" /><i>${f.n}</i></span>`
+    ).join('');
+    flagTrack.innerHTML = row + row; // duplicate → seamless loop at -50%
+  }
+
   /* ---------- Lenis smooth scroll synced with GSAP ---------- */
   let lenis;
   if (!reduce && window.Lenis) {
@@ -193,6 +208,8 @@
       { name: 'England',      city: 'London',                 x: 1038, y: 214, arc: true },
       { name: 'USA',          city: 'Miami · New York',       x: 615,  y: 287, arc: true },
       { name: 'VAE',          city: 'Dubai',                  x: 1363, y: 373, arc: true },
+      { name: 'Türkei',       city: 'Ankara',                 x: 1238, y: 285, arc: true },
+      { name: 'Thailand',     city: 'Bangkok',                x: 1632, y: 434, arc: true },
     ];
     const SVGNS = 'http://www.w3.org/2000/svg';
     const arcsG = document.getElementById('arcs');
