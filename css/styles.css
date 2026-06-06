@@ -124,6 +124,8 @@ img{display:block;max-width:100%}
   box-shadow:0 12px 34px rgba(0,0,0,.38);opacity:1;
   transition:opacity .5s var(--ease),transform .55s var(--ease)}
 .brand-cell__logo{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block}
+/* einzelne Logos mit viel Eigen-Weißraum etwas größer skalieren */
+.brand-cell__logo--lg{transform:scale(1.42)}
 /* subsidiary logos are mostly white-on-transparent → render them dark on the white tile so name + text stay legible */
 .brand-grid:not(.partner-grid) .brand-cell__logo{filter:brightness(0)}
 .brand-cell:hover .brand-cell__plate{transform:translateY(-22px) scale(1.04)}
