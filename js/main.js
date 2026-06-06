@@ -160,9 +160,11 @@
       y: 30, opacity: 0, duration: 0.7, ease: 'power2.out', stagger: 0.06,
       scrollTrigger: { trigger: '.showcase .brand-grid', start: 'top 82%' },
     });
-    gsap.from('.partner-grid .brand-cell', {
-      y: 30, opacity: 0, duration: 0.7, ease: 'power2.out', stagger: 0.06,
-      scrollTrigger: { trigger: '.partner-grid', start: 'top 82%' },
+    /* opacity only — these pins use transform:translate(-50%,-50%) for centering,
+       so animating transform here would break their positioning */
+    gsap.from('.hold-pin', {
+      opacity: 0, duration: 0.8, ease: 'power2.out', stagger: 0.12,
+      scrollTrigger: { trigger: '.holdings__map', start: 'top 80%' },
     });
 
     /* ---------- reviews: card stagger reveal ---------- */
@@ -185,10 +187,6 @@
     gsap.from('.presence__head > *', {
       y: 40, opacity: 0, duration: 1, ease: 'expo.out', stagger: 0.12,
       scrollTrigger: { trigger: '.presence', start: 'top 75%' },
-    });
-    gsap.from('.presence__legend li', {
-      y: 24, opacity: 0, duration: 0.7, ease: 'power2.out', stagger: 0.05,
-      scrollTrigger: { trigger: '.presence__legend', start: 'top 90%' },
     });
   }
 

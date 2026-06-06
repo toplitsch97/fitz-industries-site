@@ -231,63 +231,58 @@
 
     <!-- BETEILIGUNGEN & INVESTMENTS -->
     <section class="holdings" id="holdings">
-      <div class="showcase__intro">
-        <p class="kicker">— Beteiligungen & Investments</p>
-        <h2>Aktionär.<br/><span class="gold">Miteigentümer.</span></h2>
-        <p class="showcase__hint">Fitz Industries ist Aktionär bei UBS, Xiaomi, der Stadler Group und Raiffeisen — sowie Miteigentümer der Arvaloo Gruppe.</p>
-      </div>
-      <div class="brand-grid partner-grid">
+      <div class="holdings__inner">
+        <div class="holdings__text reveal-fade">
+          <p class="kicker">— Beteiligungen & Investments</p>
+          <h2 class="holdings__title">Aktionär.<br/><span class="gold">Miteigentümer.</span></h2>
+          <p class="holdings__lead">Investitionen in globale Marktführer.</p>
+          <p class="showcase__hint">Fitz Industries ist Aktionär bei UBS, Xiaomi, der Stadler Group und Raiffeisen — sowie Miteigentümer der Arvaloo Gruppe.</p>
+        </div>
 
-        <a class="brand-cell" href="https://www.ubs.com" target="_blank" rel="noopener noreferrer">
-          <span class="brand-cell__line" aria-hidden="true"></span>
-          <span class="brand-cell__plate"><img class="brand-cell__logo" src="assets/partners/ubs.svg" alt="UBS" /></span>
-          <span class="brand-cell__meta">
-            <span class="brand-cell__sector">Aktionär</span>
-            <span class="brand-cell__name">UBS</span>
-            <span class="brand-cell__loc">ubs.com ↗</span>
-          </span>
-        </a>
+        <div class="holdings__map">
+          <div class="holdings__mapdots" aria-hidden="true"></div>
 
-        <a class="brand-cell" href="https://www.mi.com" target="_blank" rel="noopener noreferrer">
-          <span class="brand-cell__line" aria-hidden="true"></span>
-          <span class="brand-cell__plate"><img class="brand-cell__logo" src="assets/partners/xiaomi.svg" alt="Xiaomi" /></span>
-          <span class="brand-cell__meta">
-            <span class="brand-cell__sector">Aktionär</span>
-            <span class="brand-cell__name">Xiaomi</span>
-            <span class="brand-cell__loc">mi.com ↗</span>
-          </span>
-        </a>
+          <!-- Verbindungslinien Karte → echter Standort-Punkt -->
+          <svg class="holdings__net" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <line x1="30" y1="18" x2="51" y2="27" />
+            <line x1="28" y1="54" x2="53" y2="30" />
+            <line x1="62" y1="60" x2="52" y2="33" />
+            <line x1="72" y1="20" x2="55" y2="29" />
+            <line x1="85" y1="34" x2="82" y2="33" />
+          </svg>
 
-        <a class="brand-cell" href="https://www.stadlerrail.com" target="_blank" rel="noopener noreferrer">
-          <span class="brand-cell__line" aria-hidden="true"></span>
-          <span class="brand-cell__plate"><img class="brand-cell__logo" src="assets/partners/stadler.svg" alt="Stadler Group" /></span>
-          <span class="brand-cell__meta">
-            <span class="brand-cell__sector">Aktionär</span>
-            <span class="brand-cell__name">Stadler Group</span>
-            <span class="brand-cell__loc">stadlerrail.com ↗</span>
-          </span>
-        </a>
+          <!-- Standort-Punkte (geografisch) -->
+          <span class="hold-node" style="--nx:51%;--ny:27%" aria-hidden="true"></span>
+          <span class="hold-node" style="--nx:53%;--ny:30%" aria-hidden="true"></span>
+          <span class="hold-node" style="--nx:52%;--ny:33%" aria-hidden="true"></span>
+          <span class="hold-node" style="--nx:55%;--ny:29%" aria-hidden="true"></span>
+          <span class="hold-node" style="--nx:82%;--ny:33%" aria-hidden="true"></span>
 
-        <a class="brand-cell" href="https://www.raiffeisen.at" target="_blank" rel="noopener noreferrer">
-          <span class="brand-cell__line" aria-hidden="true"></span>
-          <span class="brand-cell__plate"><img class="brand-cell__logo" src="assets/partners/raiffeisen.svg" alt="Raiffeisen" /></span>
-          <span class="brand-cell__meta">
-            <span class="brand-cell__sector">Aktionär</span>
-            <span class="brand-cell__name">Raiffeisen</span>
-            <span class="brand-cell__loc">raiffeisen.at ↗</span>
-          </span>
-        </a>
+          <a class="hold-pin" style="--x:30%;--y:18%" href="https://www.ubs.com" target="_blank" rel="noopener noreferrer">
+            <span class="hold-pin__card"><img src="assets/partners/ubs.svg" alt="UBS" /></span>
+            <span class="hold-pin__label">Schweiz</span>
+          </a>
 
-        <a class="brand-cell brand-cell--accent" href="https://arvaloo.com/de/" target="_blank" rel="noopener noreferrer">
-          <span class="brand-cell__line" aria-hidden="true"></span>
-          <span class="brand-cell__plate"><img class="brand-cell__logo" src="assets/partners/arvaloo.svg" alt="Arvaloo Gruppe" /></span>
-          <span class="brand-cell__meta">
-            <span class="brand-cell__sector">Miteigentümer</span>
-            <span class="brand-cell__name">Arvaloo Gruppe</span>
-            <span class="brand-cell__loc">arvaloo.com ↗</span>
-          </span>
-        </a>
+          <a class="hold-pin" style="--x:28%;--y:54%" href="https://www.stadlerrail.com" target="_blank" rel="noopener noreferrer">
+            <span class="hold-pin__card"><img src="assets/partners/stadler.svg" alt="Stadler Group" /></span>
+            <span class="hold-pin__label">Schweiz</span>
+          </a>
 
+          <a class="hold-pin" style="--x:62%;--y:60%" href="https://www.raiffeisen.at" target="_blank" rel="noopener noreferrer">
+            <span class="hold-pin__card"><img src="assets/partners/raiffeisen.svg" alt="Raiffeisen Bank International" /></span>
+            <span class="hold-pin__label">Europa</span>
+          </a>
+
+          <a class="hold-pin" style="--x:72%;--y:20%" href="https://arvaloo.com/de/" target="_blank" rel="noopener noreferrer">
+            <span class="hold-pin__card"><img src="assets/partners/arvaloo.svg" alt="Arvaloo Gruppe" /></span>
+            <span class="hold-pin__label">Österreich</span>
+          </a>
+
+          <a class="hold-pin" style="--x:85%;--y:34%" href="https://www.mi.com" target="_blank" rel="noopener noreferrer">
+            <span class="hold-pin__card"><img src="assets/partners/xiaomi.svg" alt="Xiaomi" /></span>
+            <span class="hold-pin__label">China</span>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -317,21 +312,6 @@
         </svg>
         <div class="presence__tip" id="mapTip" aria-hidden="true"></div>
       </div>
-      <ul class="presence__legend">
-        <li><b>Schweiz</b><span>St. Gallen · Hauptsitz</span></li>
-        <li><b>Liechtenstein</b><span>Vaduz</span></li>
-        <li><b>Österreich</b><span>Salzburg</span></li>
-        <li><b>Deutschland</b><span>FIH</span></li>
-        <li><b>Luxemburg</b><span>FIH</span></li>
-        <li><b>Tschechien</b><span>FIH</span></li>
-        <li><b>Bulgarien</b><span>FIH</span></li>
-        <li><b>Spanien</b><span>Madrid</span></li>
-        <li><b>England</b><span>London</span></li>
-        <li><b>USA</b><span>Miami · New York</span></li>
-        <li><b>VAE</b><span>Dubai</span></li>
-        <li><b>Thailand</b><span>Bangkok</span></li>
-        <li><b>Türkei</b><span>Ankara</span></li>
-      </ul>
 
       <!-- Flaggen-Laufband (Reihe doppelt für nahtlose Endlos-Schleife) -->
       <div class="flagmarquee" aria-hidden="true">

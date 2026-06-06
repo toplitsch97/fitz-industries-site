@@ -169,14 +169,44 @@ img{display:block;max-width:100%}
   .brand-cell__line{transform:scaleX(1);opacity:.5}
 }
 
-/* ===== Beteiligungen / Partner ===== */
-.holdings{position:relative;background:var(--bg);padding-bottom:6vh;border-top:1px solid var(--line)}
-/* exactly 5 partners → one balanced row on desktop, graceful steps down */
-.partner-grid{grid-template-columns:repeat(5,1fr)}
-@media(max-width:1080px){.partner-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:620px){.partner-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:400px){.partner-grid{grid-template-columns:1fr}}
-.partner-grid .brand-cell__plate{width:66%;height:60px;padding:11px 18px}
+/* ===== Beteiligungen: Logos auf Weltkarte ===== */
+.holdings{position:relative;background:var(--bg);border-top:1px solid var(--line);padding:14vh var(--pad)}
+.holdings__inner{display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(2rem,5vw,5.5rem);align-items:center}
+.holdings__title{font-family:var(--display);font-size:clamp(2.6rem,6vw,5rem);line-height:.98;text-transform:uppercase;letter-spacing:.01em}
+.holdings__lead{font-family:var(--display);text-transform:uppercase;font-size:clamp(1.05rem,1.8vw,1.5rem);letter-spacing:.02em;color:var(--text);margin:1.6rem 0 1.2rem}
+.holdings__text .showcase__hint{max-width:44ch;margin:0}
+.holdings__map{position:relative;aspect-ratio:16/10;border:1px solid var(--line);border-radius:18px;overflow:hidden;
+  background:radial-gradient(120% 90% at 60% 30%,rgba(20,28,34,.55),var(--bg-2))}
+.holdings__mapdots{position:absolute;inset:6% 4%;background:center/contain no-repeat url("../assets/img/dots-white.png");opacity:.16;mix-blend-mode:screen}
+.holdings__map::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(90% 70% at 50% 35%,rgba(134,168,184,.10),transparent 70%)}
+.hold-pin{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:.5rem;text-align:center;transition:transform .4s var(--ease)}
+.hold-pin:hover{transform:translate(-50%,-50%) scale(1.06);z-index:4}
+.hold-pin__card{display:flex;align-items:center;justify-content:center;
+  width:clamp(118px,11vw,166px);height:clamp(50px,5vw,68px);padding:9px 15px;
+  background:#fff;border-radius:12px;box-shadow:0 14px 34px rgba(0,0,0,.55)}
+.hold-pin__card img{max-width:100%;max-height:100%;object-fit:contain}
+.hold-pin__label{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.hold-pin__card{position:relative;z-index:1}
+/* Standort-Punkte (geografisch korrekt) */
+.hold-node{position:absolute;left:var(--nx);top:var(--ny);transform:translate(-50%,-50%);z-index:1;
+  width:9px;height:9px;border-radius:50%;background:var(--accent-2);
+  box-shadow:0 0 0 5px rgba(134,168,184,.16),0 0 16px 2px var(--accent);animation:pinpulse 2.6s var(--ease) infinite}
+/* Verbindungslinien Karte → Standort */
+.holdings__net{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.holdings__net line{stroke:var(--accent);stroke-width:.16;opacity:.5;stroke-dasharray:.7 1}
+@keyframes pinpulse{0%,100%{box-shadow:0 0 0 4px rgba(134,168,184,.12),0 0 12px 1px var(--accent)}50%{box-shadow:0 0 0 8px rgba(134,168,184,.05),0 0 22px 3px var(--accent)}}
+@media(max-width:860px){
+  .holdings__inner{grid-template-columns:1fr;gap:3rem}
+  .holdings__map{aspect-ratio:auto;border:none;border-radius:0;overflow:visible;background:none;
+    display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+  .holdings__mapdots,.holdings__map::after,.holdings__net,.hold-node{display:none}
+  .hold-pin{position:static;transform:none}
+  .hold-pin:hover{transform:translateY(-3px)}
+  .hold-pin__card{width:100%;height:64px}
+}
+@media(max-width:420px){.holdings__map{grid-template-columns:1fr}}
 .brand-cell__word{font-family:var(--display);font-size:1.7rem;letter-spacing:.03em;text-transform:uppercase;color:#0b0b0b}
 
 /* ===== Freischwebender Kolibri (oben rechts) ===== */
