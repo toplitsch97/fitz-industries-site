@@ -41,7 +41,6 @@
     gsap.set('.hero__title .line>span', { yPercent: 110 });
     const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
     tl.to('.hero__title .line>span', { yPercent: 0, duration: 1.2, stagger: 0.12 })
-      .from('.hero__eyebrow span', { yPercent: 110, duration: 0.9 }, 0.2)
       .to('.hero__sub', { opacity: 1, y: 0, duration: 1 }, 0.6)
       .from('.hero__cue', { opacity: 0, y: 20, duration: 0.8 }, 0.9);
     gsap.set('.hero__sub', { opacity: 0, y: 24 });
