@@ -1,0 +1,8 @@
+.DS_Store
+
+# Quell-/Rohmaterial (nicht für die Live-Seite nötig, ~1 GB)
+bilder/
+
+# Temporäre Screenshots / Tools
+.playwright-mcp/
+*.tmp
