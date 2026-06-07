@@ -288,7 +288,7 @@ a.hold:hover{transform:translateY(-3px)}
 @media(prefers-reduced-motion:reduce){.flagmarquee__track{animation:none;flex-wrap:wrap;justify-content:center;width:auto}}
 
 /* ===== Foundation-Logo (Stiftung) ===== */
-.foundation__logo{height:clamp(150px,24vw,260px);width:auto;margin-bottom:2rem;
+.foundation__logo{height:clamp(170px,27vw,290px);width:auto;margin-bottom:2rem;
   filter:drop-shadow(0 6px 20px rgba(0,0,0,.5))}
 
 /* ===== Folgen Sie uns / Instagram-Übersicht ===== */
