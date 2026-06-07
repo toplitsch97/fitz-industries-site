@@ -456,4 +456,17 @@
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     });
   }
+
+  /* ---------- Social-Media: weitere Accounts ein-/ausblenden ---------- */
+  document.querySelectorAll('[data-ig-toggle]').forEach((btn) => {
+    const group = btn.closest('.follow__group');
+    if (!group) return;
+    const extraCount = group.querySelectorAll('.ig-chip--extra').length;
+    const label = btn.querySelector('.ig-toggle__label');
+    btn.addEventListener('click', () => {
+      const open = group.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (label) label.textContent = open ? 'weniger anzeigen' : `${extraCount} weitere anzeigen`;
+    });
+  });
 })();
