@@ -353,6 +353,7 @@
     });
     document.querySelectorAll('.nav a').forEach((a) => {
       a.addEventListener('click', () => {
+        if (!document.body.classList.contains('menu-open')) return;
         document.body.classList.remove('menu-open');
         start();
       });
@@ -362,6 +363,7 @@
   /* ---------- nav anchor smooth scroll via Lenis ---------- */
   document.querySelectorAll('a[href^="#"]').forEach((a) => {
     a.addEventListener('click', (e) => {
+      if (a.hasAttribute('data-contact-open')) return; // Kontakt-Trigger → Popup, nicht scrollen
       const id = a.getAttribute('href');
       if (id.length < 2) return;
       const t = document.querySelector(id);
@@ -371,4 +373,87 @@
       else t.scrollIntoView({ behavior: 'smooth' });
     });
   });
+
+  /* ---------- Kontakt-Popup: Abteilungen ---------- */
+  const cmodal = document.getElementById('contactModal');
+  if (cmodal) {
+    // SVG-Pfade (24×24, stroke). Pro Abteilung ein Icon-Key.
+    const ic = {
+      calc: '<rect x="6" y="2" width="12" height="20" rx="2"/><path d="M9 6h6M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15v3M8 19h4"/>',
+      pen: '<path d="M4 20h4L20 8l-4-4L4 16z"/><path d="m14 6 4 4"/>',
+      box: '<path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/>',
+      folder: '<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
+      info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5h.01"/>',
+      brief: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18"/>',
+      building: '<path d="M5 21V4a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v17M15 9h3a1 1 0 0 1 1 1v11M8 7h1M11 7h1M8 11h1M11 11h1M8 15h1M11 15h1"/>',
+      mega: '<path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M16 8a4 4 0 0 1 0 8"/>',
+    };
+    const mailIco = '<rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/>';
+    const telIco = '<path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 2 6a2 2 0 0 1 2-2z"/>';
+
+    // ▼▼▼ Hier die echten Daten pro Abteilung eintragen (Name / E-Mail / Tel) ▼▼▼
+    const DEPARTMENTS = [
+      { dept: 'Buchhaltung',      name: '—', email: 'buchhaltung@fitz.li', tel: '+41 00 000 00 00', icon: 'calc' },
+      { dept: 'Grafik & Design',  name: '—', email: 'design@fitz.li',      tel: '+41 00 000 00 00', icon: 'pen' },
+      { dept: 'Fulfillment',      name: '—', email: 'fulfillment@fitz.li', tel: '+41 00 000 00 00', icon: 'box' },
+      { dept: 'Backoffice',       name: '—', email: 'backoffice@fitz.li',  tel: '+41 00 000 00 00', icon: 'folder' },
+      { dept: 'Information',      name: '—', email: 'info@fitz.li',        tel: '+41 00 000 00 00', icon: 'info' },
+      { dept: 'Geschäftsleitung', name: '—', email: 'management@fitz.li',  tel: '+41 00 000 00 00', icon: 'brief' },
+      { dept: 'Büro',             name: '—', email: 'office@fitz.li',      tel: '+41 00 000 00 00', icon: 'building' },
+      { dept: 'Marketing',        name: '—', email: 'marketing@fitz.li',   tel: '+41 00 000 00 00', icon: 'mega' },
+    ];
+    // ▲▲▲ Ein Ort zum Pflegen. tel: beliebig formatieren, Link wird automatisch bereinigt. ▲▲▲
+
+    const grid = document.getElementById('contactDeptGrid');
+    const svg = (paths) => `<svg viewBox="0 0 24 24" aria-hidden="true">${paths}</svg>`;
+    const telHref = (t) => 'tel:' + t.replace(/[^+\d]/g, '');
+    grid.innerHTML = DEPARTMENTS.map((d) => `
+      <div class="dept">
+        <span class="dept__icon">${svg(ic[d.icon] || ic.info)}</span>
+        <span class="dept__name">${d.dept}</span>
+        <span class="dept__person">${d.name}</span>
+        <span class="dept__links">
+          <a href="mailto:${d.email}">${svg(mailIco)}<span>${d.email}</span></a>
+          <a href="${telHref(d.tel)}">${svg(telIco)}<span>${d.tel}</span></a>
+        </span>
+      </div>`).join('');
+
+    let lastFocus = null;
+    const openModal = () => {
+      lastFocus = document.activeElement;
+      cmodal.classList.add('open');
+      cmodal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('lock');
+      stop(); // Lenis pausieren
+      const c = cmodal.querySelector('.cmodal__close');
+      if (c) c.focus();
+    };
+    const closeModal = () => {
+      if (!cmodal.classList.contains('open')) return;
+      cmodal.classList.remove('open');
+      cmodal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('lock');
+      start();
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    };
+
+    document.querySelectorAll('[data-contact-open]').forEach((el) => {
+      el.addEventListener('click', (e) => { e.preventDefault(); openModal(); });
+    });
+    cmodal.querySelectorAll('[data-contact-close]').forEach((el) => {
+      el.addEventListener('click', closeModal);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+    // einfache Fokus-Falle innerhalb des Dialogs
+    cmodal.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab') return;
+      const f = cmodal.querySelectorAll('a[href], button');
+      if (!f.length) return;
+      const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+  }
 })();
