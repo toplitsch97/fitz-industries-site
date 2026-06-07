@@ -232,7 +232,7 @@ img{display:block;max-width:100%}
 @media(prefers-reduced-motion:reduce){.flagmarquee__track{animation:none;flex-wrap:wrap;justify-content:center;width:auto}}
 
 /* ===== Foundation-Logo (Stiftung) ===== */
-.foundation__logo{height:clamp(64px,9vw,104px);width:auto;margin-bottom:1.6rem;
+.foundation__logo{height:clamp(150px,24vw,260px);width:auto;margin-bottom:2rem;
   filter:drop-shadow(0 6px 20px rgba(0,0,0,.5))}
 
 /* ===== Social-Platzhalter (unter Bewertungen) ===== */
