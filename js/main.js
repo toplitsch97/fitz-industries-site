@@ -199,7 +199,7 @@
       { name: 'Tschechien',   city: 'FIH',                    x: 1136, y: 229, small: true, arc: false },
       { name: 'Bulgarien',    city: 'FIH',                    x: 1194, y: 269, arc: true },
       { name: 'Spanien',      city: 'Madrid',                 x: 1025, y: 283, arc: true },
-      { name: 'England',      city: 'London',                 x: 1038, y: 214, arc: true },
+      { name: 'England',      city: 'London',                 x: 1060, y: 210, arc: true },
       { name: 'USA',          city: 'Miami · New York',       x: 615,  y: 287, arc: true },
       { name: 'VAE',          city: 'Dubai',                  x: 1363, y: 373, arc: true },
       { name: 'Türkei',       city: 'Ankara',                 x: 1238, y: 285, arc: true },

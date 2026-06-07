@@ -213,13 +213,13 @@ img{display:block;max-width:100%}
   .constellation{aspect-ratio:auto;max-width:none;display:flex;flex-direction:column;align-items:center;gap:2.2rem}
   .constellation__net,.constellation::before,.constellation::after,.astro-orbit{display:none}
   .constellation__core{position:static;transform:none;width:128px;height:128px}
-  .orbits{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;width:100%}
+  /* eine zentrierte Spalte → kein 2+2+1-Waisenkind */
+  .orbits{display:flex;flex-direction:column;gap:1.1rem;width:100%;max-width:380px;margin:0 auto}
   .orbit{position:static;transform:none;width:100%}
   .orbit:hover{transform:translateY(-3px)}
-  .orbit__card{width:100%;height:62px}
+  .orbit__card{width:100%;height:64px}
   .orbit__label{white-space:normal}
 }
-@media(max-width:430px){.orbits{grid-template-columns:1fr}}
 .brand-cell__word{font-family:var(--display);font-size:1.7rem;letter-spacing:.03em;text-transform:uppercase;color:#0b0b0b}
 
 /* ===== Freischwebender Kolibri (oben rechts) ===== */
