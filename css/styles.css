@@ -400,8 +400,12 @@ a.hold:hover{transform:translateY(-3px)}
 .cinfo__txt strong{font-family:var(--sans);font-size:1.15rem;font-weight:600}
 .cinfo__txt a:hover{color:var(--accent)}
 
+/* Infozeilen + Karte nebeneinander */
+.contact__bottom{display:flex;align-items:center;gap:1.6rem;margin-top:2.6rem}
+.contact__bottom .contact__info{flex:none}
+
 /* Gepunktete Europa-Karte mit Netzwerk-Animation */
-.contact__map{position:relative;width:100%;max-width:440px;aspect-ratio:19/12;margin-top:2.4rem}
+.contact__map{position:relative;flex:1;min-width:0;max-width:380px;aspect-ratio:19/12}
 .emap{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 .emap__dot{fill:rgba(134,168,184,.3)}
 .emap__line{stroke:rgba(134,168,184,.3);stroke-width:.06;stroke-linecap:round}

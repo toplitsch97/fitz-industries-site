@@ -297,15 +297,19 @@
       20: [[2, 10], [17, 20], [23, 29], [33, 37]], 21: [[3, 9], [18, 21], [24, 28]],
       22: [[4, 8], [19, 22], [25, 28]], 23: [[20, 22], [26, 29]],
     };
+    const landSet = new Set();
     for (let r = 0; r < 24; r++) {
-      (LAND[r] || []).forEach(([s, e]) => {
-        for (let c = s; c <= e; c++) {
-          const d = document.createElementNS(NS, 'circle');
-          d.setAttribute('cx', c + 0.5); d.setAttribute('cy', r + 0.5);
-          d.setAttribute('r', 0.33); d.setAttribute('class', 'emap__dot');
-          dotsG.appendChild(d);
-        }
-      });
+      (LAND[r] || []).forEach(([s, e]) => { for (let c = s; c <= e; c++) landSet.add(c + ',' + r); });
+    }
+    // feines Sub-Raster (0.5er Schritte) → kleinere, dichtere Punkte
+    for (let y = 0.25; y < 24; y += 0.5) {
+      for (let x = 0.25; x < 38; x += 0.5) {
+        if (!landSet.has(Math.floor(x) + ',' + Math.floor(y))) continue;
+        const d = document.createElementNS(NS, 'circle');
+        d.setAttribute('cx', x); d.setAttribute('cy', y);
+        d.setAttribute('r', 0.16); d.setAttribute('class', 'emap__dot');
+        dotsG.appendChild(d);
+      }
     }
     // Schweiz-Hub + Verbindungen zu europäischen Knoten
     const hub = { x: 13.5, y: 16.5 };
