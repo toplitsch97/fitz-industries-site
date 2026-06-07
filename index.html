@@ -609,17 +609,85 @@
         <p class="kicker">— Kontakt</p>
         <h2>Verbinden Sie sich<br/><span class="gold">mit uns.</span></h2>
         <p class="contact__intro">Für Presseanfragen, Investorenbeziehungen oder geschäftliche Anliegen steht Ihnen unser zentrales Management zur Verfügung.</p>
+
+        <div class="contact__features">
+          <div class="cfeat">
+            <span class="cfeat__icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4.5 13.5H11l-1 8.5L19.5 10H13z"/></svg>
+            </span>
+            <span class="cfeat__title">Schnelle Antwort</span>
+            <span class="cfeat__txt">Wir antworten innerhalb von <b>24 Stunden</b>.</span>
+          </div>
+          <div class="cfeat">
+            <span class="cfeat__icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+            </span>
+            <span class="cfeat__title">Persönlich</span>
+            <span class="cfeat__txt">Sie sprechen direkt mit unserem <b>Management</b>.</span>
+          </div>
+          <div class="cfeat">
+            <span class="cfeat__icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5 4.5 5.5v6c0 4.7 3.2 8.4 7.5 10 4.3-1.6 7.5-5.3 7.5-10v-6z"/><path d="M9 12.2l2.1 2.1L15.5 10"/></svg>
+            </span>
+            <span class="cfeat__title">Vertraulich</span>
+            <span class="cfeat__txt">Ihre Anfrage wird <b>vertraulich</b> behandelt.</span>
+          </div>
+        </div>
+
         <ul class="contact__info">
-          <li><span>Hauptsitz</span><strong>St. Gallen, Schweiz</strong></li>
-          <li><span>Gruppen-Domain</span><strong>fitz.li</strong></li>
-          <li><span>E-Mail</span><strong><a href="mailto:contact@fitz.li" data-magnetic>contact@fitz.li</a></strong></li>
+          <li>
+            <span class="cinfo__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.3 7-12a7 7 0 1 0-14 0c0 5.7 7 12 7 12z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
+            <span class="cinfo__txt"><i>Hauptsitz</i><strong>St. Gallen, Schweiz</strong></span>
+          </li>
+          <li>
+            <span class="cinfo__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/></svg></span>
+            <span class="cinfo__txt"><i>Gruppen-Domain</i><strong>fitz.li</strong></span>
+          </li>
+          <li>
+            <span class="cinfo__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg></span>
+            <span class="cinfo__txt"><i>E-Mail</i><strong><a href="mailto:contact@fitz.li" data-magnetic>contact@fitz.li</a></strong></span>
+          </li>
         </ul>
+
+        <div class="contact__map" aria-hidden="true">
+          <span class="contact__dots"></span>
+          <span class="contact__pin"></span>
+          <span class="contact__chip"><i></i>Switzerland <em>Headquarters</em></span>
+        </div>
       </div>
+
       <form class="contact__form" id="contactForm" action="https://formspree.io/f/your-id" method="POST">
-        <div class="field"><input type="text" name="name" id="f-name" required placeholder=" " /><label for="f-name">Name</label></div>
-        <div class="field"><input type="email" name="email" id="f-email" required placeholder=" " /><label for="f-email">E-Mail</label></div>
-        <div class="field"><textarea name="message" id="f-msg" rows="4" required placeholder=" "></textarea><label for="f-msg">Nachricht</label></div>
-        <button type="submit" class="btn-send" data-magnetic><span>Nachricht senden</span><i></i></button>
+        <span class="cform__glow" aria-hidden="true"></span>
+        <span class="cform__badge" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg></span>
+        <h3 class="cform__title">Schreiben Sie uns</h3>
+        <span class="cform__rule" aria-hidden="true"></span>
+
+        <div class="field field--icon">
+          <svg class="field__ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+          <input type="text" name="name" id="f-name" required placeholder=" " />
+          <label for="f-name">Name</label>
+        </div>
+        <div class="field field--icon">
+          <svg class="field__ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg>
+          <input type="email" name="email" id="f-email" required placeholder=" " />
+          <label for="f-email">E-Mail</label>
+        </div>
+        <div class="field field--icon field--area">
+          <svg class="field__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m14 6 4 4"/></svg>
+          <textarea name="message" id="f-msg" rows="5" required placeholder=" "></textarea>
+          <label for="f-msg">Nachricht</label>
+        </div>
+
+        <button type="submit" class="btn-send" data-magnetic>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+          <span>Projekt starten</span>
+        </button>
+
+        <p class="cform__time">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+          Antwortzeit: <b>&lt; 12 Stunden</b>
+        </p>
+        <p class="cform__status"><i></i>Aktuell verfügbar für neue Projekte</p>
       </form>
     </section>
 

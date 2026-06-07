@@ -374,26 +374,92 @@ a.hold:hover{transform:translateY(-3px)}
 .foundation__quote{font-family:var(--sans);font-style:italic;font-size:clamp(1.2rem,2.2vw,1.7rem);color:var(--accent);line-height:1.5;border-left:2px solid var(--accent-1);padding-left:1.6rem;font-weight:300}
 
 /* ===== Contact ===== */
-.contact{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,7vw,8rem);padding:16vh var(--pad);border-top:1px solid var(--line);align-items:center}
+.contact{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,6vw,6rem);padding:16vh var(--pad);border-top:1px solid var(--line);align-items:start;overflow:hidden}
 .contact__left h2{font-family:var(--display);font-size:clamp(2.4rem,6vw,4.6rem);line-height:1;font-weight:400;margin-bottom:1.6rem;text-transform:uppercase;letter-spacing:.01em}
-.contact__intro{color:var(--muted);font-size:1.05rem;line-height:1.7;max-width:42ch;margin-bottom:3rem;font-weight:300}
-.contact__info{list-style:none;display:flex;flex-direction:column;gap:1.5rem}
-.contact__info li{display:flex;flex-direction:column;gap:.3rem;border-top:1px solid var(--line);padding-top:1.2rem}
-.contact__info span{font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);font-weight:500}
-.contact__info strong{font-family:var(--sans);font-size:1.3rem;font-weight:600}
-.contact__info a:hover{color:var(--accent)}
-.contact__form{display:flex;flex-direction:column;gap:2rem}
+.contact__intro{color:var(--muted);font-size:1.05rem;line-height:1.7;max-width:42ch;margin-bottom:2.6rem;font-weight:300}
+
+/* Feature-Karten */
+.contact__features{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2.6rem}
+.cfeat{background:linear-gradient(180deg,rgba(134,168,184,.06),rgba(14,17,20,.4));border:1px solid var(--line);border-radius:14px;
+  padding:1.5rem 1.1rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:.75rem;transition:border-color .4s,transform .4s,background .4s}
+.cfeat:hover{border-color:rgba(134,168,184,.4);transform:translateY(-3px)}
+.cfeat__icon{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;
+  background:radial-gradient(circle at 50% 35%,rgba(134,168,184,.28),rgba(134,168,184,.04));border:1px solid rgba(134,168,184,.38)}
+.cfeat__icon svg{width:20px;height:20px;fill:none;stroke:var(--accent-2);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.cfeat__title{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--text)}
+.cfeat__txt{font-size:.82rem;line-height:1.55;color:var(--muted);font-weight:300}
+.cfeat__txt b{color:var(--accent);font-weight:600}
+
+/* Icon-Infozeilen */
+.contact__info{list-style:none;display:flex;flex-direction:column;gap:1.1rem}
+.contact__info li{display:flex;align-items:center;gap:1rem}
+.cinfo__icon{flex:none;display:grid;place-items:center;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:rgba(134,168,184,.05)}
+.cinfo__icon svg{width:20px;height:20px;fill:none;stroke:var(--accent);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.cinfo__txt{display:flex;flex-direction:column;gap:.18rem;min-width:0}
+.cinfo__txt i{font-style:normal;font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.cinfo__txt strong{font-family:var(--sans);font-size:1.15rem;font-weight:600}
+.cinfo__txt a:hover{color:var(--accent)}
+
+/* Dekorative Europa-Punktekarte */
+.contact__map{position:relative;margin-top:2.8rem;height:210px}
+.contact__dots{position:absolute;inset:0;background:url("../assets/img/dots-white.png") no-repeat;background-size:360%;background-position:50% 14%;
+  opacity:.45;-webkit-mask-image:radial-gradient(ellipse 75% 95% at 38% 58%,#000 38%,transparent 100%);mask-image:radial-gradient(ellipse 75% 95% at 38% 58%,#000 38%,transparent 100%)}
+.contact__pin{position:absolute;left:32%;top:60%;width:12px;height:12px;border-radius:50%;background:var(--accent-2);
+  box-shadow:0 0 0 4px rgba(134,168,184,.25),0 0 18px 4px rgba(134,168,184,.6)}
+.contact__pin::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:1px solid var(--accent);animation:cpin 2.4s ease-out infinite}
+@keyframes cpin{0%{transform:scale(.55);opacity:.9}100%{transform:scale(2.8);opacity:0}}
+.contact__chip{position:absolute;left:39%;top:55%;display:inline-flex;align-items:center;gap:.55rem;background:rgba(8,12,16,.72);
+  backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:10px;padding:.55rem .85rem;font-size:.66rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--text);font-weight:600;white-space:nowrap}
+.contact__chip i{width:7px;height:7px;border-radius:50%;background:var(--accent-2);box-shadow:0 0 8px var(--accent)}
+.contact__chip em{font-style:normal;color:var(--muted);letter-spacing:.14em}
+
+/* Glassmorphism-Formularkarte */
+.contact__form{position:relative;display:flex;flex-direction:column;gap:1.1rem;
+  background:linear-gradient(160deg,rgba(18,26,34,.55),rgba(10,14,18,.42));border:1px solid rgba(134,168,184,.22);border-radius:24px;
+  padding:clamp(1.8rem,3vw,2.8rem);backdrop-filter:blur(16px);box-shadow:0 30px 80px -30px rgba(0,0,0,.8),inset 0 1px 0 rgba(188,214,224,.12)}
+.cform__glow{position:absolute;inset:-1px;border-radius:24px;z-index:-1;pointer-events:none;
+  background:linear-gradient(160deg,rgba(94,133,151,.6),rgba(134,168,184,.05) 42%,transparent 72%);filter:blur(15px);opacity:.7}
+.cform__badge{align-self:center;display:grid;place-items:center;width:60px;height:60px;border-radius:50%;margin-bottom:.4rem;
+  border:1px solid rgba(134,168,184,.4);background:radial-gradient(circle at 50% 35%,rgba(134,168,184,.28),rgba(134,168,184,.03));box-shadow:0 0 26px rgba(134,168,184,.3)}
+.cform__badge svg{width:26px;height:26px;fill:none;stroke:var(--accent-2);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.cform__title{text-align:center;font-family:var(--sans);font-size:1.02rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#fff}
+.cform__rule{align-self:center;width:46px;height:2px;background:var(--accent);border-radius:2px;margin:.2rem 0 1.2rem}
+
 .field{position:relative}
-.field input,.field textarea{width:100%;background:transparent;border:0;border-bottom:1px solid var(--line);color:var(--text);
-  font-family:var(--sans);font-size:1.05rem;padding:1rem 0 .6rem;resize:none;transition:border-color .3s}
-.field input:focus,.field textarea:focus{outline:none;border-color:var(--accent)}
-.field label{position:absolute;left:0;top:1rem;color:var(--muted);font-size:1.05rem;pointer-events:none;transition:.3s var(--ease)}
-.field input:focus+label,.field input:not(:placeholder-shown)+label,
-.field textarea:focus+label,.field textarea:not(:placeholder-shown)+label{top:-.6rem;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
-.btn-send{position:relative;align-self:flex-start;background:var(--accent);color:#03121a;border:0;border-radius:40px;padding:1.1rem 2.4rem;
-  font-family:var(--sans);font-weight:700;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;cursor:none;overflow:hidden;transition:transform .3s,background .3s}
-.btn-send i{display:inline-block;width:0;overflow:hidden}
-.btn-send:hover{background:var(--accent-2)}
+.field--icon .field__ico{position:absolute;left:1rem;top:1.15rem;width:19px;height:19px;fill:none;stroke:var(--muted);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;pointer-events:none;transition:stroke .3s;z-index:2}
+.field--area .field__ico{top:1.05rem}
+.field--icon input,.field--icon textarea{width:100%;background:rgba(8,11,14,.5);border:1px solid var(--line);border-radius:12px;color:var(--text);
+  font-family:var(--sans);font-size:1rem;padding:1rem 1rem 1rem 2.9rem;resize:none;transition:border-color .3s,background .3s}
+.field--icon input:focus,.field--icon textarea:focus{outline:none;border-color:var(--accent);background:rgba(8,11,14,.82)}
+.field--icon input:focus~.field__ico,.field--icon textarea:focus~.field__ico{stroke:var(--accent)}
+.field--icon label{position:absolute;left:2.9rem;top:1rem;color:var(--muted);font-size:1rem;pointer-events:none;transition:.25s var(--ease)}
+.field--icon input:focus+label,.field--icon input:not(:placeholder-shown)+label,
+.field--icon textarea:focus+label,.field--icon textarea:not(:placeholder-shown)+label{
+  top:-.55rem;left:.85rem;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);background:#0b0f13;padding:0 .4rem;border-radius:4px}
+
+.contact__form .btn-send{align-self:stretch;display:flex;align-items:center;justify-content:center;gap:.7rem;margin-top:.6rem;
+  background:linear-gradient(180deg,rgba(134,168,184,.28),rgba(94,133,151,.18));border:1px solid rgba(134,168,184,.5);color:#eaf2f6;border-radius:40px;
+  padding:1.15rem 2rem;font-family:var(--sans);font-weight:700;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;cursor:none;overflow:hidden;
+  transition:background .35s,box-shadow .35s,transform .3s;box-shadow:0 0 30px -6px rgba(134,168,184,.5)}
+.contact__form .btn-send svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.contact__form .btn-send:hover{background:linear-gradient(180deg,rgba(134,168,184,.45),rgba(94,133,151,.3));box-shadow:0 0 40px -4px rgba(134,168,184,.72);transform:translateY(-2px)}
+
+.cform__time{display:flex;align-items:center;justify-content:center;gap:.5rem;color:var(--muted);font-size:.82rem;font-weight:300;margin-top:.2rem}
+.cform__time svg{width:16px;height:16px;fill:none;stroke:var(--accent);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.cform__time b{color:var(--accent-2);font-weight:600}
+.cform__status{display:flex;align-items:center;justify-content:center;gap:.6rem;margin-top:1rem;padding-top:1.2rem;border-top:1px solid var(--line);
+  font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#7dbf95;font-weight:600}
+.cform__status i{width:8px;height:8px;border-radius:50%;background:#3fcf6e;box-shadow:0 0 10px #3fcf6e;animation:pulseDot 2s ease-in-out infinite}
+@keyframes pulseDot{0%,100%{opacity:1}50%{opacity:.4}}
+
+@media(max-width:920px){
+  .contact__map{display:none}
+}
+@media(max-width:560px){
+  .contact__features{grid-template-columns:1fr;gap:.8rem}
+  .cfeat{flex-direction:row;text-align:left;gap:1rem}
+}
 
 /* ===== Footer ===== */
 .footer{padding:12vh var(--pad) 3rem;border-top:1px solid var(--line);background:var(--bg-2)}
