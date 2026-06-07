@@ -160,11 +160,11 @@
       y: 30, opacity: 0, duration: 0.7, ease: 'power2.out', stagger: 0.06,
       scrollTrigger: { trigger: '.showcase .brand-grid', start: 'top 82%' },
     });
-    /* opacity only — these pins use transform:translate(-50%,-50%) for centering,
+    /* opacity only — orbits use transform:translate(-50%,-50%) for centering,
        so animating transform here would break their positioning */
-    gsap.from('.hold-pin', {
+    gsap.from('.orbit', {
       opacity: 0, duration: 0.8, ease: 'power2.out', stagger: 0.12,
-      scrollTrigger: { trigger: '.holdings__map', start: 'top 80%' },
+      scrollTrigger: { trigger: '.constellation', start: 'top 80%' },
     });
 
     /* ---------- reviews: card stagger reveal ---------- */
