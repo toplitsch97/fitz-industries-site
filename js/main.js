@@ -145,20 +145,21 @@
     /* stat counters */
     gsap.utils.toArray('.stat__num').forEach((el) => {
       const target = +el.dataset.count;
+      const suffix = el.dataset.suffix || '';
       const o = { v: 0 };
       ScrollTrigger.create({
         trigger: el, start: 'top 88%', once: true,
         onEnter: () => gsap.to(o, {
           v: target, duration: 1.6, ease: 'power2.out',
-          onUpdate: () => { el.textContent = Math.round(o.v); },
+          onUpdate: () => { el.textContent = Math.round(o.v) + suffix; },
         }),
       });
     });
 
-    /* ---------- logo grids: staggered reveal (portfolio + Beteiligungen) ---------- */
-    gsap.from('.showcase .brand-cell', {
-      y: 30, opacity: 0, duration: 0.7, ease: 'power2.out', stagger: 0.06,
-      scrollTrigger: { trigger: '.showcase .brand-grid', start: 'top 82%' },
+    /* ---------- holding blocks: staggered reveal (portfolio + Beteiligungen) ---------- */
+    gsap.from('.showcase .hold', {
+      y: 30, opacity: 0, duration: 0.7, ease: 'power2.out', stagger: 0.08,
+      scrollTrigger: { trigger: '.showcase .holds', start: 'top 82%' },
     });
     /* opacity only — orbits use transform:translate(-50%,-50%) for centering,
        so animating transform here would break their positioning */
