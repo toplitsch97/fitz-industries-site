@@ -96,6 +96,7 @@
     initReveals();
     buildScenes();
     buildMap();
+    buildContactMap();
     ScrollTrigger.refresh();
   }
   /* Start the (short) loader as soon as the DOM is ready — don't wait for every
@@ -276,6 +277,66 @@
     arcEls.forEach((a, i) => {
       mapTl.to(a, { strokeDashoffset: 0, duration: 1.6, ease: 'power1.inOut' }, 0.4 + i * 0.25);
     });
+  }
+
+  /* ---------- Kontakt: gepunktete Europa-Karte + Netzwerk-Animation ---------- */
+  function buildContactMap() {
+    const svg = document.getElementById('emap');
+    if (!svg) return;
+    const NS = 'http://www.w3.org/2000/svg';
+    const dotsG = svg.querySelector('.emap__dots');
+    const linesG = svg.querySelector('.emap__lines');
+    const nodesG = svg.querySelector('.emap__nodes');
+    // Europa als Landraster (Spalten 0–37, Zeilen 0–23), Bereiche [start,end] je Zeile
+    const LAND = {
+      0: [[18, 22], [25, 31]], 1: [[17, 31]], 2: [[16, 32]], 3: [[15, 33]], 4: [[14, 33]],
+      5: [[13, 33]], 6: [[13, 32]], 7: [[13, 31]], 8: [[5, 8], [13, 31]], 9: [[3, 9], [12, 33]],
+      10: [[3, 9], [11, 35]], 11: [[4, 9], [10, 36]], 12: [[5, 9], [8, 37]], 13: [[5, 8], [6, 37]],
+      14: [[5, 37]], 15: [[4, 37]], 16: [[2, 37]], 17: [[1, 11], [13, 36]],
+      18: [[1, 10], [16, 19], [21, 37]], 19: [[1, 10], [16, 20], [22, 30], [33, 37]],
+      20: [[2, 10], [17, 20], [23, 29], [33, 37]], 21: [[3, 9], [18, 21], [24, 28]],
+      22: [[4, 8], [19, 22], [25, 28]], 23: [[20, 22], [26, 29]],
+    };
+    for (let r = 0; r < 24; r++) {
+      (LAND[r] || []).forEach(([s, e]) => {
+        for (let c = s; c <= e; c++) {
+          const d = document.createElementNS(NS, 'circle');
+          d.setAttribute('cx', c + 0.5); d.setAttribute('cy', r + 0.5);
+          d.setAttribute('r', 0.33); d.setAttribute('class', 'emap__dot');
+          dotsG.appendChild(d);
+        }
+      });
+    }
+    // Schweiz-Hub + Verbindungen zu europäischen Knoten
+    const hub = { x: 13.5, y: 16.5 };
+    const targets = [[8, 13], [5, 20], [18, 12], [17, 19], [21, 8], [23, 12], [25, 21], [29, 20], [20, 15]];
+    targets.forEach((t, i) => {
+      const x2 = t[0] + 0.5, y2 = t[1] + 0.5;
+      const base = document.createElementNS(NS, 'line');
+      base.setAttribute('x1', hub.x); base.setAttribute('y1', hub.y);
+      base.setAttribute('x2', x2); base.setAttribute('y2', y2);
+      base.setAttribute('class', 'emap__line');
+      linesG.appendChild(base);
+      const pulse = document.createElementNS(NS, 'line');
+      pulse.setAttribute('x1', hub.x); pulse.setAttribute('y1', hub.y);
+      pulse.setAttribute('x2', x2); pulse.setAttribute('y2', y2);
+      pulse.setAttribute('class', 'emap__pulse');
+      pulse.style.setProperty('--i', i);
+      linesG.appendChild(pulse);
+      const node = document.createElementNS(NS, 'circle');
+      node.setAttribute('cx', x2); node.setAttribute('cy', y2);
+      node.setAttribute('r', 0.42); node.setAttribute('class', 'emap__node');
+      node.style.setProperty('--i', i);
+      nodesG.appendChild(node);
+    });
+    const ring = document.createElementNS(NS, 'circle');
+    ring.setAttribute('cx', hub.x); ring.setAttribute('cy', hub.y); ring.setAttribute('r', 0.55);
+    ring.setAttribute('class', 'emap__hubring');
+    nodesG.appendChild(ring);
+    const core = document.createElementNS(NS, 'circle');
+    core.setAttribute('cx', hub.x); core.setAttribute('cy', hub.y); core.setAttribute('r', 0.5);
+    core.setAttribute('class', 'emap__hub');
+    nodesG.appendChild(core);
   }
 
   /* ---------- burger (mobile) ---------- */
