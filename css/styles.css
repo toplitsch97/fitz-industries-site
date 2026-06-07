@@ -374,7 +374,7 @@ a.hold:hover{transform:translateY(-3px)}
 .foundation__quote{font-family:var(--sans);font-style:italic;font-size:clamp(1.2rem,2.2vw,1.7rem);color:var(--accent);line-height:1.5;border-left:2px solid var(--accent-1);padding-left:1.6rem;font-weight:300}
 
 /* ===== Contact ===== */
-.contact{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,6vw,6rem);padding:16vh var(--pad);border-top:1px solid var(--line);align-items:start;overflow:hidden}
+.contact{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,6vw,6rem);padding:16vh var(--pad);border-top:1px solid var(--line);align-items:center;overflow:hidden}
 .contact__left h2{font-family:var(--display);font-size:clamp(2.4rem,6vw,4.6rem);line-height:1;font-weight:400;margin-bottom:1.6rem;text-transform:uppercase;letter-spacing:.01em}
 .contact__intro{color:var(--muted);font-size:1.05rem;line-height:1.7;max-width:42ch;margin-bottom:2.6rem;font-weight:300}
 
@@ -401,7 +401,7 @@ a.hold:hover{transform:translateY(-3px)}
 .cinfo__txt a:hover{color:var(--accent)}
 
 /* Dekorative Europa-Punktekarte */
-.contact__map{position:relative;margin-top:2.8rem;height:210px}
+.contact__map{position:relative;margin-top:2.2rem;height:180px}
 .contact__dots{position:absolute;inset:0;background:url("../assets/img/dots-white.png") no-repeat;background-size:360%;background-position:50% 14%;
   opacity:.45;-webkit-mask-image:radial-gradient(ellipse 75% 95% at 38% 58%,#000 38%,transparent 100%);mask-image:radial-gradient(ellipse 75% 95% at 38% 58%,#000 38%,transparent 100%)}
 .contact__pin{position:absolute;left:32%;top:60%;width:12px;height:12px;border-radius:50%;background:var(--accent-2);
@@ -415,22 +415,24 @@ a.hold:hover{transform:translateY(-3px)}
 .contact__chip em{font-style:normal;color:var(--muted);letter-spacing:.14em}
 
 /* Glassmorphism-Formularkarte */
-.contact__form{position:relative;display:flex;flex-direction:column;gap:1.1rem;
-  background:linear-gradient(160deg,rgba(18,26,34,.55),rgba(10,14,18,.42));border:1px solid rgba(134,168,184,.22);border-radius:24px;
-  padding:clamp(1.8rem,3vw,2.8rem);backdrop-filter:blur(16px);box-shadow:0 30px 80px -30px rgba(0,0,0,.8),inset 0 1px 0 rgba(188,214,224,.12)}
-.cform__glow{position:absolute;inset:-1px;border-radius:24px;z-index:-1;pointer-events:none;
-  background:linear-gradient(160deg,rgba(94,133,151,.6),rgba(134,168,184,.05) 42%,transparent 72%);filter:blur(15px);opacity:.7}
-.cform__badge{align-self:center;display:grid;place-items:center;width:60px;height:60px;border-radius:50%;margin-bottom:.4rem;
-  border:1px solid rgba(134,168,184,.4);background:radial-gradient(circle at 50% 35%,rgba(134,168,184,.28),rgba(134,168,184,.03));box-shadow:0 0 26px rgba(134,168,184,.3)}
-.cform__badge svg{width:26px;height:26px;fill:none;stroke:var(--accent-2);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.cform__title{text-align:center;font-family:var(--sans);font-size:1.02rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#fff}
-.cform__rule{align-self:center;width:46px;height:2px;background:var(--accent);border-radius:2px;margin:.2rem 0 1.2rem}
+.contact__form{position:relative;display:flex;flex-direction:column;gap:1.3rem;
+  background:linear-gradient(160deg,rgba(20,30,42,.6),rgba(9,13,18,.46));border:1px solid rgba(120,172,214,.42);border-radius:24px;
+  padding:clamp(2rem,3vw,3.1rem);backdrop-filter:blur(18px);
+  box-shadow:0 0 0 1px rgba(120,180,232,.14),0 0 70px -8px rgba(74,148,212,.5),0 34px 90px -34px rgba(0,0,0,.85),inset 0 1px 0 rgba(188,214,224,.16)}
+.cform__glow{position:absolute;inset:-3px;border-radius:26px;z-index:-1;pointer-events:none;
+  background:linear-gradient(155deg,rgba(74,148,212,.85),rgba(120,172,214,.18) 38%,transparent 66%);filter:blur(22px);opacity:.85}
+.cform__badge{align-self:center;display:grid;place-items:center;width:64px;height:64px;border-radius:50%;margin-bottom:.5rem;
+  border:1px solid rgba(120,172,214,.5);background:radial-gradient(circle at 50% 35%,rgba(74,148,212,.32),rgba(120,172,214,.04));box-shadow:0 0 30px rgba(74,148,212,.45)}
+.cform__badge svg{width:27px;height:27px;fill:none;stroke:var(--accent-2);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.cform__title{text-align:center;font-family:var(--sans);font-size:1.05rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#fff}
+.cform__rule{align-self:center;width:48px;height:2px;background:linear-gradient(90deg,transparent,var(--accent-2),transparent);border-radius:2px;margin:.3rem 0 1.4rem}
 
 .field{position:relative}
 .field--icon .field__ico{position:absolute;left:1rem;top:1.15rem;width:19px;height:19px;fill:none;stroke:var(--muted);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;pointer-events:none;transition:stroke .3s;z-index:2}
 .field--area .field__ico{top:1.05rem}
 .field--icon input,.field--icon textarea{width:100%;background:rgba(8,11,14,.5);border:1px solid var(--line);border-radius:12px;color:var(--text);
   font-family:var(--sans);font-size:1rem;padding:1rem 1rem 1rem 2.9rem;resize:none;transition:border-color .3s,background .3s}
+.field--area textarea{min-height:208px}
 .field--icon input:focus,.field--icon textarea:focus{outline:none;border-color:var(--accent);background:rgba(8,11,14,.82)}
 .field--icon input:focus~.field__ico,.field--icon textarea:focus~.field__ico{stroke:var(--accent)}
 .field--icon label{position:absolute;left:2.9rem;top:1rem;color:var(--muted);font-size:1rem;pointer-events:none;transition:.25s var(--ease)}
@@ -438,12 +440,12 @@ a.hold:hover{transform:translateY(-3px)}
 .field--icon textarea:focus+label,.field--icon textarea:not(:placeholder-shown)+label{
   top:-.55rem;left:.85rem;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);background:#0b0f13;padding:0 .4rem;border-radius:4px}
 
-.contact__form .btn-send{align-self:stretch;display:flex;align-items:center;justify-content:center;gap:.7rem;margin-top:.6rem;
-  background:linear-gradient(180deg,rgba(134,168,184,.28),rgba(94,133,151,.18));border:1px solid rgba(134,168,184,.5);color:#eaf2f6;border-radius:40px;
-  padding:1.15rem 2rem;font-family:var(--sans);font-weight:700;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;cursor:none;overflow:hidden;
-  transition:background .35s,box-shadow .35s,transform .3s;box-shadow:0 0 30px -6px rgba(134,168,184,.5)}
+.contact__form .btn-send{align-self:stretch;display:flex;align-items:center;justify-content:center;gap:.7rem;margin-top:.9rem;
+  background:linear-gradient(180deg,rgba(74,148,212,.32),rgba(94,133,151,.18));border:1px solid rgba(120,172,214,.6);color:#eaf4fb;border-radius:40px;
+  padding:1.2rem 2rem;font-family:var(--sans);font-weight:700;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;cursor:none;overflow:hidden;
+  transition:background .35s,box-shadow .35s,transform .3s;box-shadow:0 0 34px -6px rgba(74,148,212,.6)}
 .contact__form .btn-send svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.contact__form .btn-send:hover{background:linear-gradient(180deg,rgba(134,168,184,.45),rgba(94,133,151,.3));box-shadow:0 0 40px -4px rgba(134,168,184,.72);transform:translateY(-2px)}
+.contact__form .btn-send:hover{background:linear-gradient(180deg,rgba(74,148,212,.5),rgba(94,133,151,.3));box-shadow:0 0 46px -4px rgba(74,148,212,.85);transform:translateY(-2px)}
 
 .cform__time{display:flex;align-items:center;justify-content:center;gap:.5rem;color:var(--muted);font-size:.82rem;font-weight:300;margin-top:.2rem}
 .cform__time svg{width:16px;height:16px;fill:none;stroke:var(--accent);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
