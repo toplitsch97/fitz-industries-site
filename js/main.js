@@ -52,10 +52,11 @@
   stop();
 
   function initReveals() {
-    /* hero title lines */
-    gsap.set('.hero__title .line>span', { yPercent: 110 });
+    /* hero title lines — opacity + sanftes Y (kein overflow-Mask, sonst werden
+       Unterlängen abgeschnitten und der Verlaufstext + Glow verschwinden) */
+    gsap.set('.hero__title .line>span', { yPercent: 38, opacity: 0 });
     const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
-    tl.to('.hero__title .line>span', { yPercent: 0, duration: 1.2, stagger: 0.12 })
+    tl.to('.hero__title .line>span', { yPercent: 0, opacity: 1, duration: 1.2, stagger: 0.14 })
       .to('.hero__sub', { opacity: 1, y: 0, duration: 1 }, 0.6)
       .from('.hero__cue', { opacity: 0, y: 20, duration: 0.8 }, 0.9);
     gsap.set('.hero__sub', { opacity: 0, y: 24 });

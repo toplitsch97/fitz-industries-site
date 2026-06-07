@@ -3,8 +3,12 @@
 :root{
   --bg:#050607; --bg-2:#0b0d0f; --card:#0e1114;
   --text:#f3f5f6; --muted:#8b97a0;
-  --accent-1:#5e8597; --accent:#86a8b8; --accent-2:#bcd6e0;
+  --accent-1:#5e8597; --accent:#86a8b8; --accent-2:#bcd6e0; --accent-3:#eaf6fc;
   --line:rgba(134,168,184,.16);
+  /* leuchtendes Stahlblau: Verläufe + Glow für „Hingucker"-Headlines */
+  --head-shine:linear-gradient(165deg,#ffffff 0%,#dfeef6 30%,var(--accent-2) 62%,var(--accent) 100%);
+  --accent-shine:linear-gradient(160deg,#f4fbff 0%,var(--accent-3) 26%,var(--accent-2) 58%,var(--accent) 100%);
+  --glow:rgba(134,168,184,.5); --glow-soft:rgba(134,168,184,.22);
   --display:"Anton",Impact,sans-serif;
   --serif:"Cormorant Garamond",Georgia,serif;
   --sans:"Inter",system-ui,sans-serif;
@@ -20,7 +24,17 @@ body{
 body.lock{overflow:hidden;height:100vh}
 a{color:inherit;text-decoration:none}
 .gold{color:var(--accent)}
-h1,h2,h3,h4{font-weight:400;line-height:1}
+h1,h2,h3,h4{font-weight:400;line-height:1.06}
+/* Akzentwörter in den großen Display-Headlines: leuchtender Stahlblau-Verlauf + Glow */
+.manifest__text .gold,
+.showcase__intro h2 .gold,
+.holdings__title .gold,
+.follow__head h2 .gold,
+.contact__left h2 .gold{
+  background:var(--accent-shine);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:var(--accent-2);
+  filter:drop-shadow(0 2px 22px var(--glow));
+}
 img{display:block;max-width:100%}
 ::selection{background:var(--accent);color:#03121a}
 
@@ -72,13 +86,25 @@ img{display:block;max-width:100%}
   opacity:.10;mix-blend-mode:screen;z-index:1}
 .hero__veil{position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse at center,rgba(5,6,7,.2),rgba(5,6,7,.8) 72%,var(--bg)),linear-gradient(to bottom,transparent 55%,var(--bg))}
 .hero__content{position:relative;z-index:2;padding:0 1.5rem}
+.hero__content::before{content:"";position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);
+  width:min(760px,86vw);height:min(420px,52vh);z-index:-1;pointer-events:none;
+  background:radial-gradient(ellipse at center,var(--glow-soft),transparent 68%);filter:blur(8px)}
 .hero__title{font-family:var(--serif);font-weight:400;letter-spacing:.01em}
-.hero__title .line{display:block;overflow:hidden}
-.hero__title .line>span{display:block}
-.hero__title .line:first-child{font-size:clamp(2.4rem,7vw,5.6rem);line-height:1.06}
-.hero__title .line--accent{font-size:clamp(2.4rem,7vw,5.6rem);line-height:1.06;color:var(--accent);font-style:italic}
+/* overflow:visible → keine abgeschnittenen Unterlängen (g/p) und der Glow ist sichtbar */
+.hero__title .line{display:block;overflow:visible}
+.hero__title .line>span{display:block;padding:.04em 0 .12em}
+.hero__title .line:first-child{font-size:clamp(2.6rem,7.6vw,6.4rem);line-height:1.05;color:#f7fafc;text-shadow:0 2px 40px rgba(0,0,0,.5)}
+.hero__title .line--accent{font-size:clamp(2.6rem,7.6vw,6.4rem);line-height:1.12;font-style:italic}
+/* Verlauf + Glow auf den INNEREN Span (Element ohne overflow) — sonst Chrome-Bug: clip-text + filter = unsichtbar */
+.hero__title .line--accent>span{
+  background:var(--accent-shine);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:var(--accent-2);
+  filter:drop-shadow(0 4px 26px var(--glow))}
 .hero__sub{display:flex;align-items:center;justify-content:center;gap:1.1rem;margin:2.4rem auto 0;color:var(--muted);font-size:.78rem;letter-spacing:.46em;text-transform:uppercase;font-weight:500}
-.hero__since-rule{display:inline-block;width:46px;height:1px;background:var(--accent)}
+.hero__since-rule{display:inline-block;width:46px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--accent-2),transparent);
+  box-shadow:0 0 12px var(--glow);animation:sinceGlow 3.4s ease-in-out infinite}
+@keyframes sinceGlow{0%,100%{opacity:.5}50%{opacity:1}}
 .hero__cue{position:absolute;bottom:2.4rem;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:.8rem;font-size:.64rem;letter-spacing:.34em;text-transform:uppercase;color:var(--muted)}
 .hero__cue i{width:1px;height:48px;background:linear-gradient(var(--accent),transparent);position:relative;overflow:hidden}
 .hero__cue i::after{content:"";position:absolute;top:-50%;left:0;width:100%;height:50%;background:var(--accent-2);animation:cue 1.8s var(--ease) infinite}
@@ -88,16 +114,42 @@ img{display:block;max-width:100%}
 .manifest{padding:14vh var(--pad) 0;position:relative}
 .manifest__pin{min-height:60vh;display:flex;flex-direction:column;justify-content:center}
 .manifest__kicker{font-size:.72rem;letter-spacing:.42em;text-transform:uppercase;color:var(--accent);margin-bottom:2rem;font-weight:600}
-.manifest__text{font-family:var(--display);font-size:clamp(2rem,7vw,6rem);line-height:1.04;font-weight:400;max-width:20ch;text-transform:uppercase;letter-spacing:.01em}
+.manifest__text{font-family:var(--display);font-size:clamp(2rem,7vw,6rem);line-height:1.16;font-weight:400;max-width:20ch;text-transform:uppercase;letter-spacing:.01em}
 .manifest__text .w{display:inline-block;opacity:.12;transition:opacity .1s;margin-right:.18em}
 .about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:clamp(2rem,6vw,7rem);padding:12vh 0 16vh;border-top:1px solid var(--line);margin-top:8vh}
 .about-grid__lead p{font-size:clamp(1.05rem,1.7vw,1.4rem);line-height:1.7;color:#d4dbe0;margin-bottom:1.4rem;font-weight:300}
 .about-grid__lead strong{color:var(--accent);font-weight:600}
 .signature{font-family:var(--sans);font-weight:500;font-size:1.05rem;letter-spacing:.04em;color:var(--muted)}
-.stats{display:flex;flex-direction:column;gap:2.4rem;justify-content:center}
-.stat{border-left:1px solid var(--line);padding-left:1.6rem}
-.stat__num{font-family:var(--display);font-size:clamp(3rem,7vw,5.5rem);font-weight:400;color:var(--accent);line-height:1;display:block}
-.stat__label{font-size:.74rem;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);font-weight:500}
+/* Kennzahlen als Bento-Grid (gleiche Sprache wie die Holding-Cards) */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;align-content:center}
+.stat{position:relative;overflow:hidden;background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:clamp(1.15rem,2vw,1.7rem) clamp(1.2rem,2vw,1.75rem);
+  transition:border-color .45s var(--ease),background .45s var(--ease),transform .45s var(--ease)}
+.stat::before{content:"";position:absolute;left:0;top:14%;height:72%;width:2px;border-radius:2px;
+  background:linear-gradient(var(--accent-2),var(--accent),transparent);opacity:.45;transition:opacity .45s var(--ease)}
+.stat::after{content:"";position:absolute;inset:0;z-index:0;opacity:0;transition:opacity .55s var(--ease);
+  background:radial-gradient(120% 140% at 0% 0%,rgba(134,168,184,.10),transparent 60%)}
+.stat:hover{border-color:rgba(134,168,184,.42);background:#0f1419;transform:translateY(-3px)}
+.stat:hover::before{opacity:1}
+.stat:hover::after{opacity:1}
+.stat__num{position:relative;z-index:1;font-family:var(--display);font-weight:400;line-height:.88;display:block;
+  font-size:clamp(2.5rem,4.6vw,3.7rem);letter-spacing:.005em;
+  background:linear-gradient(155deg,#ffffff 0%,var(--accent-2) 42%,var(--accent) 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--accent-2)}
+.stat__label{position:relative;z-index:1;display:block;margin-top:.55rem;font-size:.7rem;letter-spacing:.2em;
+  text-transform:uppercase;color:#c2ccd3;font-weight:600;line-height:1.35}
+.stat__sub{display:block;margin-top:.45rem;font-size:.62rem;letter-spacing:.14em;color:var(--muted);
+  font-weight:500;text-transform:none}
+/* „50+" als breite Feature-Kachel */
+.stat--feature{grid-column:1/-1;display:flex;align-items:center;gap:clamp(1.1rem,2.4vw,1.8rem)}
+.stat--feature .stat__num{font-size:clamp(3.6rem,7vw,5.6rem)}
+.stat--feature .stat__label{margin-top:0}
+/* Mobile: das große Headline-Loch unter „WEITBLICK." schließen */
+@media(max-width:620px){
+  .manifest{padding-top:11vh}
+  .manifest__pin{min-height:auto;padding-bottom:2.5rem}
+  .about-grid{padding:6vh 0 9vh;margin-top:5vh}
+}
 
 /* ===== Portfolio / Logo-Raster ===== */
 .showcase{position:relative;background:var(--bg);padding-bottom:6vh}
@@ -122,10 +174,20 @@ a.hold:hover{transform:translateY(-3px)}
 .hold:hover .hold__photo{transform:scale(1.08);opacity:.8}
 .hold__head>:not(.hold__photo){position:relative;z-index:2}
 .hold__no{font-family:var(--display);font-size:1.05rem;color:var(--accent);letter-spacing:.04em;opacity:.85}
-.hold__code{font-family:var(--display);font-size:clamp(1.4rem,3vw,2.1rem);letter-spacing:.02em;line-height:1;
-  text-transform:uppercase;color:#fff;white-space:nowrap;min-width:88px;text-shadow:0 2px 14px rgba(0,0,0,.6)}
+/* Logo-Zone: feste Breite, Inhalt zentriert → einheitliches Raster über alle Cards */
+.hold__code{flex:0 0 134px;width:134px;display:inline-flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-size:clamp(1.4rem,3vw,2.1rem);letter-spacing:.02em;line-height:1;
+  text-transform:uppercase;color:#fff;white-space:nowrap;text-shadow:0 2px 14px rgba(0,0,0,.6)}
 .hold:hover .hold__code{color:var(--accent-2)}
-.hold__id{display:flex;flex-direction:column;gap:.28rem;margin-right:auto}
+/* Echtes Holding-Logo (weiße Silhouette) – feste, zentrierte Box hält die Namens-Spalte bündig */
+.hold__logo{flex:0 0 134px;width:134px;height:clamp(2.3rem,4.6vw,3.1rem);
+  object-fit:contain;object-position:center;display:block;
+  filter:drop-shadow(0 2px 14px rgba(0,0,0,.55));transition:opacity .45s var(--ease)}
+.hold:hover .hold__logo{opacity:.88}
+@media(max-width:620px){.hold__logo,.hold__code{flex-basis:auto;width:clamp(80px,30vw,120px);justify-content:flex-start}.hold__logo{height:2.4rem;object-position:left center}}
+/* feine Trennlinie zwischen Logo-Zone und Text → strukturiert, unabhängig von der Logo-Breite */
+.hold__id{display:flex;flex-direction:column;gap:.28rem;margin-right:auto;
+  border-left:1px solid var(--line);padding-left:clamp(1rem,2vw,1.5rem)}
 .hold__sector{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--accent-2);font-weight:600}
 .hold__name{font-family:var(--sans);font-size:clamp(1.1rem,2.4vw,1.55rem);font-weight:600;color:#fff;letter-spacing:.01em;line-height:1.15;text-shadow:0 2px 14px rgba(0,0,0,.5)}
 .hold__meta{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:#aeb9c1;font-weight:500}
@@ -149,76 +211,13 @@ a.hold:hover{transform:translateY(-3px)}
   .hold__head{gap:.7rem 1rem;min-height:0;padding:1.5rem 1.3rem}
   .hold__count{order:4;width:100%}
   .hold__body{grid-template-columns:1fr}
-}
-
-.brand-grid{margin:0 var(--pad);display:grid;grid-template-columns:repeat(4,1fr);
-  background:var(--bg);border-top:1px solid var(--line);border-left:1px solid var(--line)}
-/* 11 own brands → 4+4+3 on desktop (avoid a lone orphan), graceful steps down */
-@media(max-width:1080px){.brand-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:620px){.brand-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:400px){.brand-grid{grid-template-columns:1fr}}
-.brand-cell{position:relative;background:var(--bg);aspect-ratio:5/4;display:flex;align-items:center;justify-content:center;
-  overflow:hidden;isolation:isolate;border-right:1px solid var(--line);border-bottom:1px solid var(--line);transition:background .5s var(--ease)}
-.brand-cell::before{content:"";position:absolute;inset:0;z-index:0;opacity:0;transition:opacity .55s var(--ease);
-  background:radial-gradient(120% 90% at 50% 118%,rgba(134,168,184,.20),transparent 70%)}
-.brand-cell:hover::before{opacity:1}
-/* Eigene Firmen: themenpassendes Foto als Kachel-Hintergrund (Bild via data-img), abgedunkelt für Lesbarkeit */
-.brand-cell--photo .brand-cell__photo{position:absolute;inset:0;z-index:0;
-  background-position:center;background-size:cover;background-repeat:no-repeat;
-  filter:grayscale(.6) brightness(.55);
-  transform:scale(1.02);transition:transform .6s var(--ease)}
-.brand-cell--photo .brand-cell__photo::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(11,11,11,.42) 0%,rgba(11,11,11,.28) 45%,rgba(11,11,11,.80) 100%)}
-.brand-cell--photo:hover .brand-cell__photo{transform:scale(1.07)}
-.brand-cell--photo .brand-cell__no{color:#fff;opacity:.85}
-.brand-cell--photo .brand-cell__loc{color:rgba(255,255,255,.82)}
-.brand-cell--photo .brand-cell__name{color:#fff}
-/* Foto-Karten: keine weiße Kachel — Logo weiß direkt auf dem Bild */
-.brand-cell--photo .brand-cell__plate{background:none;box-shadow:none}
-@media(hover:none),(max-width:620px){.brand-cell--photo{min-height:240px}}
-.brand-cell__no{position:absolute;top:1rem;left:1.15rem;z-index:2;font-family:var(--display);font-size:.92rem;
-  letter-spacing:.06em;color:var(--muted);opacity:.45;transition:color .4s,opacity .4s}
-.brand-cell:hover .brand-cell__no{color:var(--accent);opacity:.95}
-.brand-cell__line{position:absolute;top:0;left:0;right:0;height:2px;z-index:3;background:var(--accent);
-  transform:scaleX(0);transform-origin:left;transition:transform .55s var(--ease)}
-.brand-cell:hover .brand-cell__line{transform:scaleX(1)}
-/* white tile so every logo (light or dark) stays visible with its text */
-.brand-cell__plate{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;
-  width:64%;height:62px;background:#fff;border-radius:11px;padding:11px 16px;box-sizing:border-box;
-  box-shadow:0 8px 24px rgba(0,0,0,.34);opacity:1;
-  transition:opacity .5s var(--ease),transform .55s var(--ease)}
-.brand-cell__logo{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block}
-/* einzelne Logos mit viel Eigen-Weißraum etwas größer skalieren */
-.brand-cell__logo--lg{transform:scale(1.42)}
-/* subsidiary logos are mostly white-on-transparent → render them dark on the white tile so name + text stay legible */
-.brand-grid:not(.partner-grid) .brand-cell__logo{filter:brightness(0) invert(1) drop-shadow(0 2px 10px rgba(0,0,0,.65))}
-.brand-cell:hover .brand-cell__plate{transform:translateY(-22px) scale(1.04)}
-.brand-cell__meta{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 1.3rem 1.4rem;text-align:center;
-  display:flex;flex-direction:column;gap:.3rem;opacity:0;transform:translateY(14px);
-  transition:opacity .5s var(--ease),transform .55s var(--ease)}
-.brand-cell:hover .brand-cell__meta{opacity:1;transform:translateY(0)}
-.brand-cell__sector{font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--accent);font-weight:600}
-.brand-cell__name{font-family:var(--sans);font-size:.98rem;font-weight:600;color:var(--text);letter-spacing:.01em}
-.brand-cell__loc{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-.brand-cell--accent .brand-cell__no{opacity:.9}
-.brand-cell--accent::after{content:"";position:absolute;inset:0;z-index:0;
-  background:radial-gradient(120% 90% at 50% 120%,rgba(134,168,184,.10),transparent 72%)}
-/* spotlight: dim siblings when hovering the grid */
-.brand-grid:hover .brand-cell:not(:hover) .brand-cell__plate{opacity:.28}
-.brand-grid:hover .brand-cell:not(:hover) .brand-cell__no{opacity:.2}
-@media(hover:none),(max-width:620px){
-  .brand-cell__plate{opacity:1;transform:none}
-  .brand-cell__meta{position:static;opacity:1;transform:none;padding:1rem 1rem 0}
-  /* stack tile above text — without this they sit side by side (flex row) */
-  .brand-cell{aspect-ratio:auto;flex-direction:column;justify-content:flex-start;gap:1.1rem;padding:2.4rem 1rem 2rem}
-  .brand-cell__plate{width:100%;max-width:220px}
-  .brand-cell__line{transform:scaleX(1);opacity:.5}
+  .hold__id{border-left:0;padding-left:0}
 }
 
 /* ===== Beteiligungen: Konstellation (Fitz im Zentrum) ===== */
 .holdings{position:relative;background:var(--bg);border-top:1px solid var(--line);padding:14vh var(--pad)}
 .holdings__inner{display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(2rem,5vw,5.5rem);align-items:center}
-.holdings__title{font-family:var(--display);font-size:clamp(2.6rem,6vw,5rem);line-height:.98;text-transform:uppercase;letter-spacing:.01em}
+.holdings__title{font-family:var(--display);font-size:clamp(2.6rem,6vw,5rem);line-height:1.12;text-transform:uppercase;letter-spacing:.01em}
 .holdings__lead{font-family:var(--display);text-transform:uppercase;font-size:clamp(1.05rem,1.8vw,1.5rem);letter-spacing:.02em;color:var(--text);margin:1.6rem 0 1.2rem}
 .holdings__text .showcase__hint{max-width:44ch;margin:0}
 
@@ -245,7 +244,7 @@ a.hold:hover{transform:translateY(-3px)}
 .orbit__card img{max-width:100%;max-height:100%;object-fit:contain}
 .orbit__label{font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
 /* Astronaut: umkreist als Satellit das FITZ-Zentrum */
-.astro-orbit{position:absolute;left:50%;top:50%;width:48%;height:48%;transform:translate(-50%,-50%);
+.astro-orbit{position:absolute;left:50%;top:50%;width:35%;height:35%;transform:translate(-50%,-50%);
   z-index:2;pointer-events:none;animation:astroSpin 20s linear infinite}
 .astro{position:absolute;top:0;left:50%;width:clamp(34px,4.4vw,50px);
   transform:translate(-50%,-50%);animation:astroCounter 20s linear infinite,astroBob 3.4s ease-in-out infinite}
@@ -266,7 +265,6 @@ a.hold:hover{transform:translateY(-3px)}
   .orbit__card{width:100%;height:64px}
   .orbit__label{white-space:normal}
 }
-.brand-cell__word{font-family:var(--display);font-size:1.7rem;letter-spacing:.03em;text-transform:uppercase;color:#0b0b0b}
 
 /* ===== Freischwebender Kolibri (oben rechts) ===== */
 .colibri-fixed{position:fixed;top:1.1rem;right:1.4rem;z-index:7500;width:auto;height:42px;
@@ -296,7 +294,7 @@ a.hold:hover{transform:translateY(-3px)}
 .follow__head{max-width:760px;margin:0 auto 6vh;text-align:center}
 .follow__head h2{font-family:var(--display);font-size:clamp(2.2rem,6vw,4.6rem);text-transform:uppercase;line-height:1}
 .follow__sub{margin-top:1.4rem;color:var(--muted);font-size:clamp(.95rem,1.4vw,1.1rem)}
-.follow__groups{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(1.6rem,3vw,2.8rem);max-width:1100px;margin:0 auto}
+.follow__groups{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(1.6rem,3vw,2.8rem);max-width:1100px;margin:0 auto;align-items:start}
 .follow__group{border:1px solid var(--line);border-radius:18px;background:var(--bg-2);padding:1.6rem 1.6rem 1.8rem}
 .follow__gtitle{font-family:var(--sans);font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:1.2rem}
 .follow__chips{display:flex;flex-wrap:wrap;gap:.7rem}
@@ -375,7 +373,7 @@ a.hold:hover{transform:translateY(-3px)}
 
 /* ===== Contact ===== */
 .contact{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,6vw,6rem);padding:16vh var(--pad);border-top:1px solid var(--line);align-items:center;overflow:hidden}
-.contact__left h2{font-family:var(--display);font-size:clamp(2.4rem,6vw,4.6rem);line-height:1;font-weight:400;margin-bottom:1.6rem;text-transform:uppercase;letter-spacing:.01em}
+.contact__left h2{font-family:var(--display);font-size:clamp(2.4rem,6vw,4.6rem);line-height:1.12;font-weight:400;margin-bottom:1.6rem;text-transform:uppercase;letter-spacing:.01em}
 .contact__intro{color:var(--muted);font-size:1.05rem;line-height:1.7;max-width:42ch;margin-bottom:2.6rem;font-weight:300}
 
 /* Feature-Karten */
@@ -520,8 +518,7 @@ a.hold:hover{transform:translateY(-3px)}
   body.menu-open .nav__burger span:last-child{transform:translateY(-6px) rotate(-45deg)}
   .about-grid,.contact{grid-template-columns:1fr}
   .footer__top,.footer__cols{grid-template-columns:1fr 1fr}
-  .stats{flex-direction:row;flex-wrap:wrap;gap:1.6rem}
-  .stat{flex:1 1 40%}
+  .stat--feature{flex-direction:column;align-items:flex-start;gap:.4rem}
 }
 @media(max-width:560px){
   .footer__cols{grid-template-columns:1fr}
