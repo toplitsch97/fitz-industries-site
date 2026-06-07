@@ -422,11 +422,11 @@ a.hold:hover{transform:translateY(-3px)}
 .emap__hub{fill:var(--accent-2);filter:drop-shadow(0 0 1px var(--accent-2))}
 .emap__hubring{fill:none;stroke:var(--accent);stroke-width:.09;transform-box:fill-box;transform-origin:center;animation:emapHub 2.6s ease-out infinite}
 @keyframes emapHub{0%{transform:scale(.5);opacity:.9}100%{transform:scale(3.6);opacity:0}}
-.contact__chip{position:absolute;left:40%;top:62%;display:inline-flex;align-items:center;gap:.55rem;background:rgba(8,12,16,.78);
-  backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:10px;padding:.55rem .85rem;font-size:.66rem;letter-spacing:.16em;
+.contact__chip{position:absolute;left:40%;top:62%;display:inline-flex;align-items:center;gap:.4rem;background:rgba(8,12,16,.8);
+  backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:7px;padding:.3rem .55rem;font-size:.5rem;letter-spacing:.13em;
   text-transform:uppercase;color:var(--text);font-weight:600;white-space:nowrap;z-index:2}
-.contact__chip i{flex:none;width:7px;height:7px;border-radius:50%;background:var(--accent-2);box-shadow:0 0 8px var(--accent)}
-.contact__chip em{font-style:normal;color:var(--muted);letter-spacing:.14em}
+.contact__chip-flag{flex:none;width:13px;height:9px;object-fit:cover;border-radius:1.5px;display:block;box-shadow:0 0 0 1px rgba(255,255,255,.12)}
+.contact__chip em{font-style:normal;color:var(--muted);letter-spacing:.12em}
 @media(prefers-reduced-motion:reduce){.emap__pulse,.emap__node,.emap__hubring{animation:none}.emap__pulse{opacity:0}}
 
 /* Glassmorphism-Formularkarte */
