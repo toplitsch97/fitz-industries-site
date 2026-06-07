@@ -198,10 +198,20 @@ img{display:block;max-width:100%}
   padding:9px 14px;background:#fff;border-radius:12px;box-shadow:0 12px 30px rgba(0,0,0,.55)}
 .orbit__card img{max-width:100%;max-height:100%;object-fit:contain}
 .orbit__label{font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+/* Astronaut: umkreist als Satellit das FITZ-Zentrum */
+.astro-orbit{position:absolute;left:50%;top:50%;width:48%;height:48%;transform:translate(-50%,-50%);
+  z-index:2;pointer-events:none;animation:astroSpin 20s linear infinite}
+.astro{position:absolute;top:0;left:50%;width:clamp(34px,4.4vw,50px);
+  transform:translate(-50%,-50%);animation:astroCounter 20s linear infinite,astroBob 3.4s ease-in-out infinite}
+.astro svg{width:100%;height:auto;display:block;filter:drop-shadow(0 6px 14px rgba(0,0,0,.55))}
+@keyframes astroSpin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+@keyframes astroCounter{from{transform:translate(-50%,-50%) rotate(0)}to{transform:translate(-50%,-50%) rotate(-360deg)}}
+@keyframes astroBob{0%,100%{margin-top:0}50%{margin-top:-7px}}
+@media(prefers-reduced-motion:reduce){.astro-orbit,.astro{animation:none}}
 @media(max-width:860px){
   .holdings__inner{grid-template-columns:1fr;gap:3rem}
   .constellation{aspect-ratio:auto;max-width:none;display:flex;flex-direction:column;align-items:center;gap:2.2rem}
-  .constellation__net,.constellation::before,.constellation::after{display:none}
+  .constellation__net,.constellation::before,.constellation::after,.astro-orbit{display:none}
   .constellation__core{position:static;transform:none;width:128px;height:128px}
   .orbits{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;width:100%}
   .orbit{position:static;transform:none;width:100%}

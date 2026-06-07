@@ -178,10 +178,6 @@
       yPercent: 16, ease: 'none',
       scrollTrigger: { trigger: '.foundation', start: 'top bottom', end: 'bottom top', scrub: true },
     });
-    gsap.from('.foundation__title', {
-      yPercent: 40, opacity: 0, ease: 'expo.out', duration: 1.2,
-      scrollTrigger: { trigger: '.foundation', start: 'top 65%' },
-    });
 
     /* presence: headline reveal */
     gsap.from('.presence__head > *', {
