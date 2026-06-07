@@ -312,10 +312,14 @@ a.hold:hover{transform:translateY(-3px)}
 .reviews{padding:16vh var(--pad);border-top:1px solid var(--line);text-align:center}
 .reviews__head{max-width:760px;margin:0 auto 5vh}
 .reviews__head h2{font-family:var(--display);font-size:clamp(2.2rem,6.5vw,5rem);line-height:1.02;font-weight:400;text-transform:uppercase;letter-spacing:.01em}
-.reviews__badge{display:inline-flex;align-items:center;gap:.6rem;margin-top:1.8rem;border:1px solid var(--line);border-radius:40px;
+.reviews__badges{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:1rem;margin-top:1.8rem}
+.reviews__badge{display:inline-flex;align-items:center;gap:.6rem;border:1px solid var(--line);border-radius:40px;
   padding:.7rem 1.4rem;transition:border-color .35s,background .35s}
 .reviews__badge:hover{border-color:var(--accent);background:rgba(134,168,184,.06)}
+.reviews__badge--tp:hover{border-color:#00b67a;background:rgba(0,182,122,.08)}
 .reviews__g{width:20px;height:20px;flex:0 0 auto}
+.reviews__tp{width:20px;height:20px;flex:0 0 auto}
+.reviews__tpbar{height:19px;width:auto;flex:0 0 auto;display:block}
 .reviews__rating{font-family:var(--sans);font-weight:700;font-size:1.05rem;color:var(--text)}
 .reviews__stars{color:var(--accent);letter-spacing:.12em;font-size:.95rem}
 .reviews__label{color:var(--muted);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500}
@@ -332,10 +336,13 @@ a.hold:hover{transform:translateY(-3px)}
 .review-card__g{width:18px;height:18px;margin-left:auto;flex:0 0 auto;opacity:.9}
 .review-card__stars{color:var(--accent);letter-spacing:.14em;font-size:.98rem}
 .review-card blockquote{color:#cfd6db;font-size:.95rem;line-height:1.65;font-weight:300}
-.reviews__cta{display:inline-block;margin-top:5vh;border:1px solid var(--accent);color:var(--accent);border-radius:40px;
+.reviews__ctas{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;margin-top:5vh}
+.reviews__cta{display:inline-block;border:1px solid var(--accent);color:var(--accent);border-radius:40px;
   padding:1rem 2.3rem;font-family:var(--sans);font-weight:600;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;
-  cursor:none;transition:background .4s,color .4s}
+  cursor:none;transition:background .4s,color .4s,border-color .4s}
 .reviews__cta:hover{background:var(--accent);color:#03121a}
+.reviews__cta--tp{border-color:#00b67a;color:#00b67a}
+.reviews__cta--tp:hover{background:#00b67a;color:#04140d}
 
 /* ===== Globale Präsenz / Weltkarte ===== */
 .presence{padding:16vh var(--pad) 14vh;overflow:hidden;border-top:1px solid var(--line)}
