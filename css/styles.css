@@ -18,8 +18,17 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:auto;-webkit-font-smoothing:antialiased}
 body{
-  background:var(--bg);color:var(--text);font-family:var(--sans);
+  background:linear-gradient(180deg,#080b0f 0%,#050708 42%,#04070a 100%) fixed,var(--bg);
+  color:var(--text);font-family:var(--sans);
   font-weight:300;line-height:1.5;overflow-x:hidden;cursor:none;
+}
+/* durchgehende Atmosphäre: weiche Stahlblau-Lichter statt flachem Schwarz */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background:
+    radial-gradient(72% 56% at 10% -6%, rgba(94,133,151,.16), transparent 60%),
+    radial-gradient(64% 52% at 106% 110%, rgba(94,133,151,.13), transparent 60%),
+    radial-gradient(50% 42% at 78% 32%, rgba(120,150,170,.06), transparent 70%);
 }
 body.lock{overflow:hidden;height:100vh}
 a{color:inherit;text-decoration:none}
@@ -66,7 +75,7 @@ img{display:block;max-width:100%}
 .header.scrolled{padding-top:1rem;padding-bottom:1rem;background:rgba(5,6,7,.65);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .brand{display:flex;align-items:center;gap:.7rem}
 .brand__colibri{height:30px;width:auto;display:block}
-.brand__logo{height:32px;width:auto;display:block}
+.brand__logo{height:52px;width:auto;display:block}
 .nav{display:flex;gap:2.4rem;align-items:center}
 .nav a{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:500;position:relative;transition:color .3s}
 .nav a:hover{color:var(--text)}
@@ -165,7 +174,7 @@ img{display:block;max-width:100%}
 }
 
 /* ===== Portfolio / Logo-Raster ===== */
-.showcase{position:relative;background:var(--bg);padding-bottom:6vh}
+.showcase{position:relative;background:transparent;padding-bottom:6vh}
 .showcase__intro{padding:14vh var(--pad) 7vh;max-width:1080px}
 .showcase__intro h2{font-family:var(--display);font-size:clamp(2.1rem,6.2vw,5rem);line-height:1.12;font-weight:400;margin-bottom:1.4rem;text-transform:uppercase;letter-spacing:.01em}
 .showcase__hint{color:var(--muted);font-size:.95rem;line-height:1.7;font-weight:300;max-width:44ch}
@@ -228,7 +237,7 @@ a.hold:hover{transform:translateY(-3px)}
 }
 
 /* ===== Beteiligungen: Konstellation (Fitz im Zentrum) ===== */
-.holdings{position:relative;background:var(--bg);border-top:1px solid var(--line);padding:14vh var(--pad)}
+.holdings{position:relative;background:transparent;border-top:1px solid var(--line);padding:14vh var(--pad)}
 .holdings__inner{display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(2rem,5vw,5.5rem);align-items:center}
 .holdings__title{font-family:var(--display);font-size:clamp(2.6rem,6vw,5rem);line-height:1.12;text-transform:uppercase;letter-spacing:.01em}
 .holdings__lead{font-family:var(--display);text-transform:uppercase;font-size:clamp(1.05rem,1.8vw,1.5rem);letter-spacing:.02em;color:var(--text);margin:1.6rem 0 1.2rem}
@@ -303,7 +312,7 @@ a.hold:hover{transform:translateY(-3px)}
   filter:drop-shadow(0 6px 20px rgba(0,0,0,.5))}
 
 /* ===== Folgen Sie uns / Instagram-Übersicht ===== */
-.follow{position:relative;background:var(--bg);border-top:1px solid var(--line);padding:14vh var(--pad)}
+.follow{position:relative;background:transparent;border-top:1px solid var(--line);padding:14vh var(--pad)}
 .follow__head{max-width:760px;margin:0 auto 6vh;text-align:center}
 .follow__head h2{font-family:var(--display);font-size:clamp(2.2rem,6vw,4.6rem);text-transform:uppercase;line-height:1}
 .follow__sub{margin-top:1.4rem;color:var(--muted);font-size:clamp(.95rem,1.4vw,1.1rem)}
