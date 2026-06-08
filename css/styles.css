@@ -66,7 +66,7 @@ img{display:block;max-width:100%}
 .header.scrolled{padding-top:1rem;padding-bottom:1rem;background:rgba(5,6,7,.65);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .brand{display:flex;align-items:center;gap:.7rem}
 .brand__colibri{height:30px;width:auto;display:block}
-.brand__logo{height:24px;width:auto;display:block}
+.brand__logo{height:32px;width:auto;display:block}
 .nav{display:flex;gap:2.4rem;align-items:center}
 .nav a{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:500;position:relative;transition:color .3s}
 .nav a:hover{color:var(--text)}
@@ -456,34 +456,34 @@ a.hold:hover{transform:translateY(-3px)}
 @media(prefers-reduced-motion:reduce){.emap__pulse,.emap__node,.emap__hubring{animation:none}.emap__pulse{opacity:0}}
 
 /* Glassmorphism-Formularkarte */
-.contact__form{position:relative;display:flex;flex-direction:column;gap:1.3rem;
+.contact__form{position:relative;display:flex;flex-direction:column;gap:1rem;
   background:linear-gradient(160deg,rgba(20,30,42,.6),rgba(9,13,18,.46));border:1px solid rgba(120,172,214,.42);border-radius:24px;
-  padding:clamp(2rem,3vw,3.1rem);backdrop-filter:blur(18px);
+  padding:clamp(1.5rem,2.4vw,2.4rem);backdrop-filter:blur(18px);
   box-shadow:0 0 0 1px rgba(120,180,232,.14),0 0 70px -8px rgba(74,148,212,.5),0 34px 90px -34px rgba(0,0,0,.85),inset 0 1px 0 rgba(188,214,224,.16)}
 .cform__glow{position:absolute;inset:-3px;border-radius:26px;z-index:-1;pointer-events:none;
   background:linear-gradient(155deg,rgba(74,148,212,.85),rgba(120,172,214,.18) 38%,transparent 66%);filter:blur(22px);opacity:.85}
-.cform__badge{align-self:center;display:grid;place-items:center;width:64px;height:64px;border-radius:50%;margin-bottom:.5rem;
+.cform__badge{align-self:center;display:grid;place-items:center;width:52px;height:52px;border-radius:50%;margin-bottom:.35rem;
   border:1px solid rgba(120,172,214,.5);background:radial-gradient(circle at 50% 35%,rgba(74,148,212,.32),rgba(120,172,214,.04));box-shadow:0 0 30px rgba(74,148,212,.45)}
-.cform__badge svg{width:27px;height:27px;fill:none;stroke:var(--accent-2);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.cform__title{text-align:center;font-family:var(--sans);font-size:1.05rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#fff}
-.cform__rule{align-self:center;width:48px;height:2px;background:linear-gradient(90deg,transparent,var(--accent-2),transparent);border-radius:2px;margin:.3rem 0 1.4rem}
+.cform__badge svg{width:22px;height:22px;fill:none;stroke:var(--accent-2);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.cform__title{text-align:center;font-family:var(--sans);font-size:.95rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#fff}
+.cform__rule{align-self:center;width:48px;height:2px;background:linear-gradient(90deg,transparent,var(--accent-2),transparent);border-radius:2px;margin:.25rem 0 1rem}
 
 .field{position:relative}
-.field--icon .field__ico{position:absolute;left:1rem;top:1.15rem;width:19px;height:19px;fill:none;stroke:var(--muted);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;pointer-events:none;transition:stroke .3s;z-index:2}
-.field--area .field__ico{top:1.05rem}
+.field--icon .field__ico{position:absolute;left:1rem;top:.95rem;width:18px;height:18px;fill:none;stroke:var(--muted);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;pointer-events:none;transition:stroke .3s;z-index:2}
+.field--area .field__ico{top:.9rem}
 .field--icon input,.field--icon textarea{width:100%;background:rgba(8,11,14,.5);border:1px solid var(--line);border-radius:12px;color:var(--text);
-  font-family:var(--sans);font-size:1rem;padding:1rem 1rem 1rem 2.9rem;resize:none;transition:border-color .3s,background .3s}
-.field--area textarea{min-height:208px}
+  font-family:var(--sans);font-size:.95rem;padding:.8rem .9rem .8rem 2.8rem;resize:none;transition:border-color .3s,background .3s}
+.field--area textarea{min-height:140px}
 .field--icon input:focus,.field--icon textarea:focus{outline:none;border-color:var(--accent);background:rgba(8,11,14,.82)}
 .field--icon input:focus~.field__ico,.field--icon textarea:focus~.field__ico{stroke:var(--accent)}
-.field--icon label{position:absolute;left:2.9rem;top:1rem;color:var(--muted);font-size:1rem;pointer-events:none;transition:.25s var(--ease)}
+.field--icon label{position:absolute;left:2.8rem;top:.8rem;color:var(--muted);font-size:.95rem;pointer-events:none;transition:.25s var(--ease)}
 .field--icon input:focus+label,.field--icon input:not(:placeholder-shown)+label,
 .field--icon textarea:focus+label,.field--icon textarea:not(:placeholder-shown)+label{
   top:-.55rem;left:.85rem;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);background:#0b0f13;padding:0 .4rem;border-radius:4px}
 
-.contact__form .btn-send{align-self:stretch;display:flex;align-items:center;justify-content:center;gap:.7rem;margin-top:.9rem;
+.contact__form .btn-send{align-self:stretch;display:flex;align-items:center;justify-content:center;gap:.7rem;margin-top:.6rem;
   background:linear-gradient(180deg,rgba(74,148,212,.32),rgba(94,133,151,.18));border:1px solid rgba(120,172,214,.6);color:#eaf4fb;border-radius:40px;
-  padding:1.2rem 2rem;font-family:var(--sans);font-weight:700;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;cursor:none;overflow:hidden;
+  padding:.95rem 1.8rem;font-family:var(--sans);font-weight:700;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;cursor:none;overflow:hidden;
   transition:background .35s,box-shadow .35s,transform .3s;box-shadow:0 0 34px -6px rgba(74,148,212,.6)}
 .contact__form .btn-send svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .contact__form .btn-send:hover{background:linear-gradient(180deg,rgba(74,148,212,.5),rgba(94,133,151,.3));box-shadow:0 0 46px -4px rgba(74,148,212,.85);transform:translateY(-2px)}
@@ -491,7 +491,7 @@ a.hold:hover{transform:translateY(-3px)}
 .cform__time{display:flex;align-items:center;justify-content:center;gap:.5rem;color:var(--muted);font-size:.82rem;font-weight:300;margin-top:.2rem}
 .cform__time svg{width:16px;height:16px;fill:none;stroke:var(--accent);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .cform__time b{color:var(--accent-2);font-weight:600}
-.cform__status{display:flex;align-items:center;justify-content:center;gap:.6rem;margin-top:1rem;padding-top:1.2rem;border-top:1px solid var(--line);
+.cform__status{display:flex;align-items:center;justify-content:center;gap:.6rem;margin-top:.7rem;padding-top:.95rem;border-top:1px solid var(--line);
   font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#7dbf95;font-weight:600}
 .cform__status i{width:8px;height:8px;border-radius:50%;background:#3fcf6e;box-shadow:0 0 10px #3fcf6e;animation:pulseDot 2s ease-in-out infinite}
 @keyframes pulseDot{0%,100%{opacity:1}50%{opacity:.4}}

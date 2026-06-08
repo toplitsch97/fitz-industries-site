@@ -170,10 +170,14 @@
       scrollTrigger: { trigger: '.constellation', start: 'top 80%' },
     });
 
-    /* ---------- reviews: card stagger reveal ---------- */
+    /* ---------- reviews: card stagger reveal ----------
+       once + clearProps: Animation läuft genau einmal durch und entfernt danach
+       alle Inline-Transforms — sonst bleiben die Karten auf unterschiedlichen
+       y-Offsets „hängen" und stehen nicht mehr auf einer Linie. */
     gsap.from('.review-card', {
       y: 30, opacity: 0, duration: 0.7, ease: 'power2.out', stagger: 0.08,
-      scrollTrigger: { trigger: '.review-grid', start: 'top 85%' },
+      clearProps: 'transform',
+      scrollTrigger: { trigger: '.review-grid', start: 'top 85%', once: true },
     });
 
     /* foundation parallax */
@@ -194,7 +198,7 @@
     const W = 2094, H = 1025;
     // positions via equirectangular projection: x=(lon+180)/360*W, y=(90-lat)/180*H
     const hubs = [
-      { name: 'Schweiz',      city: 'St. Gallen · Hauptsitz', x: 1102, y: 245, hq: true,   arc: false },
+      { name: 'Schweiz',      city: 'Zürich · Hauptsitz',     x: 1097, y: 243, hq: true,   arc: false },
       { name: 'Liechtenstein',city: 'Vaduz',                  x: 1108, y: 246, small: true, arc: false },
       { name: 'Österreich',   city: 'Salzburg',               x: 1131, y: 242, small: true, arc: false },
       { name: 'Deutschland',  city: 'FIH',                    x: 1107, y: 221, small: true, arc: false },
@@ -387,20 +391,22 @@
       brief: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18"/>',
       building: '<path d="M5 21V4a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v17M15 9h3a1 1 0 0 1 1 1v11M8 7h1M11 7h1M8 11h1M11 11h1M8 15h1M11 15h1"/>',
       mega: '<path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M16 8a4 4 0 0 1 0 8"/>',
+      news: '<path d="M4 5h13v15H5a1 1 0 0 1-1-1z"/><path d="M17 8h3v9a2 2 0 0 1-2 2M7 9h7M7 12h7M7 15h4"/>',
     };
     const mailIco = '<rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/>';
     const telIco = '<path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 2 6a2 2 0 0 1 2-2z"/>';
 
     // ▼▼▼ Hier die echten Daten pro Abteilung eintragen (Name / E-Mail / Tel) ▼▼▼
     const DEPARTMENTS = [
-      { dept: 'Buchhaltung',      name: '—', email: 'buchhaltung@fitz.li', tel: '+41 00 000 00 00', icon: 'calc' },
-      { dept: 'Grafik & Design',  name: '—', email: 'design@fitz.li',      tel: '+41 00 000 00 00', icon: 'pen' },
-      { dept: 'Fulfillment',      name: '—', email: 'fulfillment@fitz.li', tel: '+41 00 000 00 00', icon: 'box' },
-      { dept: 'Backoffice',       name: '—', email: 'backoffice@fitz.li',  tel: '+41 00 000 00 00', icon: 'folder' },
-      { dept: 'Information',      name: '—', email: 'info@fitz.li',        tel: '+41 00 000 00 00', icon: 'info' },
-      { dept: 'Geschäftsleitung', name: '—', email: 'management@fitz.li',  tel: '+41 00 000 00 00', icon: 'brief' },
-      { dept: 'Büro',             name: '—', email: 'office@fitz.li',      tel: '+41 00 000 00 00', icon: 'building' },
-      { dept: 'Marketing',        name: '—', email: 'marketing@fitz.li',   tel: '+41 00 000 00 00', icon: 'mega' },
+      { dept: 'Buchhaltung',      name: '—', email: 'buchhaltung@fitz-industries.ch', tel: '+41 00 000 00 00', icon: 'calc' },
+      { dept: 'Grafik & Design',  name: '—', email: 'design@fitz-industries.ch',      tel: '+41 00 000 00 00', icon: 'pen' },
+      { dept: 'Fulfillment',      name: '—', email: 'fulfillment@fitz-industries.ch', tel: '+41 00 000 00 00', icon: 'box' },
+      { dept: 'Backoffice',       name: '—', email: 'backoffice@fitz-industries.ch',  tel: '+41 00 000 00 00', icon: 'folder' },
+      { dept: 'Information',      name: '—', email: 'info@fitz-industries.ch',        tel: '+41 00 000 00 00', icon: 'info' },
+      { dept: 'Geschäftsleitung', name: '—', email: 'management@fitz-industries.ch',  tel: '+41 00 000 00 00', icon: 'brief' },
+      { dept: 'Büro',             name: '—', email: 'office@fitz-industries.ch',      tel: '+41 00 000 00 00', icon: 'building' },
+      { dept: 'Marketing',        name: '—', email: 'marketing@fitz-industries.ch',   tel: '+41 00 000 00 00', icon: 'mega' },
+      { dept: 'Presse',           name: '—', email: 'presseanfragen@fitz-industries.ch', tel: '+41 00 000 00 00', icon: 'news' },
     ];
     // ▲▲▲ Ein Ort zum Pflegen. tel: beliebig formatieren, Link wird automatisch bereinigt. ▲▲▲
 
