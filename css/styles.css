@@ -311,7 +311,30 @@ a.hold:hover{transform:translateY(-3px)}
 .follow__group{border:1px solid var(--line);border-radius:18px;background:var(--bg-2);padding:1.6rem 1.6rem 1.8rem}
 .follow__gtitle{font-family:var(--sans);font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:1.2rem}
 .follow__chips{display:flex;flex-wrap:wrap;gap:.7rem}
+.follow__socials{display:flex;flex-wrap:wrap;justify-content:center;gap:.9rem;max-width:820px;margin:0 auto 3rem}
+.soc-btn{display:inline-flex;align-items:center;justify-content:center;width:54px;height:54px;border:1px solid var(--line);border-radius:50%;color:var(--muted);background:var(--bg-2);transition:color .3s,border-color .3s,background .3s,transform .3s}
+.soc-btn svg{width:22px;height:22px;fill:currentColor}
+.soc-btn:hover{color:var(--text);border-color:var(--accent);background:rgba(134,168,184,.1);transform:translateY(-3px)}
 .follow__simple{display:flex;flex-wrap:wrap;justify-content:center;gap:.8rem;max-width:820px;margin:0 auto}
+/* Instagram-Popup */
+.igpop{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:1.4rem}
+.igpop[hidden]{display:none}
+.igpop__backdrop{position:absolute;inset:0;background:rgba(3,4,5,.74);backdrop-filter:blur(8px);animation:igFade .25s ease}
+.igpop__panel{position:relative;z-index:1;width:100%;max-width:420px;border:1px solid var(--line);border-radius:20px;background:var(--bg-2);
+  padding:2.4rem 1.8rem 2rem;text-align:center;box-shadow:0 30px 80px -20px rgba(0,0,0,.7),0 0 70px -16px rgba(134,168,184,.45);animation:igRise .3s cubic-bezier(.2,.7,.2,1)}
+.igpop__close{position:absolute;top:.9rem;right:.9rem;width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;
+  border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--muted);cursor:pointer;transition:color .3s,border-color .3s}
+.igpop__close svg{width:16px;height:16px}
+.igpop__close:hover{color:var(--text);border-color:var(--accent)}
+.igpop__badge{display:inline-flex;align-items:center;justify-content:center;width:54px;height:54px;border-radius:16px;margin-bottom:1rem;
+  color:var(--accent);background:rgba(134,168,184,.1);border:1px solid var(--line)}
+.igpop__badge svg{width:26px;height:26px}
+.igpop__panel h3{font-family:var(--display);text-transform:uppercase;font-size:1.5rem;letter-spacing:.02em}
+.igpop__sub{color:var(--muted);font-size:.9rem;margin:.5rem 0 1.6rem}
+.igpop__list{display:flex;flex-direction:column;gap:.7rem}
+.igpop__list .ig-chip{justify-content:center}
+@keyframes igFade{from{opacity:0}to{opacity:1}}
+@keyframes igRise{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
 .ig-chip{display:inline-flex;align-items:center;gap:.5rem;padding:.55rem .9rem;border:1px solid var(--line);border-radius:40px;
   color:var(--muted);font-size:.82rem;background:rgba(255,255,255,.015);
   transition:border-color .3s var(--ease),color .3s,background .3s,transform .3s}

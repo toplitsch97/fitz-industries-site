@@ -463,16 +463,27 @@
     });
   }
 
-  /* ---------- Social-Media: weitere Accounts ein-/ausblenden ---------- */
-  document.querySelectorAll('[data-ig-toggle]').forEach((btn) => {
-    const group = btn.closest('.follow__group');
-    if (!group) return;
-    const extraCount = group.querySelectorAll('.ig-chip--extra').length;
-    const label = btn.querySelector('.ig-toggle__label');
-    btn.addEventListener('click', () => {
-      const open = group.classList.toggle('is-open');
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      if (label) label.textContent = open ? 'weniger anzeigen' : `${extraCount} weitere anzeigen`;
+  /* ---------- Instagram-Popup ---------- */
+  const igTrigger = document.getElementById('igTrigger');
+  const igPop = document.getElementById('igPop');
+  if (igTrigger && igPop) {
+    let lastFocus = null;
+    const openIg = () => {
+      lastFocus = document.activeElement;
+      igPop.hidden = false;
+      document.body.style.overflow = 'hidden';
+      const focusable = igPop.querySelector('a, button');
+      if (focusable) focusable.focus();
+    };
+    const closeIg = () => {
+      igPop.hidden = true;
+      document.body.style.overflow = '';
+      if (lastFocus) lastFocus.focus();
+    };
+    igTrigger.addEventListener('click', openIg);
+    igPop.querySelectorAll('[data-igclose]').forEach((el) => el.addEventListener('click', closeIg));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !igPop.hidden) closeIg();
     });
-  });
+  }
 })();
