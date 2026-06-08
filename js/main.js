@@ -486,4 +486,71 @@
       if (e.key === 'Escape' && !igPop.hidden) closeIg();
     });
   }
+
+  /* ---------- Holding-Kacheln: Grid-Layout + Detail-Popup ---------- */
+  const arrowSvg = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+
+  // Detail-Popup einmalig anlegen
+  let hmodal = document.getElementById('holdModal');
+  if (!hmodal) {
+    hmodal = document.createElement('div');
+    hmodal.id = 'holdModal';
+    hmodal.className = 'hmodal';
+    hmodal.setAttribute('role', 'dialog');
+    hmodal.setAttribute('aria-modal', 'true');
+    hmodal.innerHTML =
+      '<div class="hmodal__backdrop" data-hclose></div>' +
+      '<div class="hmodal__dialog" role="document">' +
+        '<button class="hmodal__close" type="button" data-hclose aria-label="Schließen"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>' +
+        '<p class="hmodal__sector"></p><h3 class="hmodal__name"></h3><div class="hmodal__body"></div>' +
+      '</div>';
+    document.body.appendChild(hmodal);
+  }
+  const hmSector = hmodal.querySelector('.hmodal__sector');
+  const hmName = hmodal.querySelector('.hmodal__name');
+  const hmBody = hmodal.querySelector('.hmodal__body');
+  const closeHM = () => { hmodal.classList.remove('open'); document.body.style.overflow = ''; };
+  const openHM = (sector, name, bodyHTML) => {
+    hmSector.textContent = sector || '';
+    hmName.textContent = name || '';
+    hmBody.innerHTML = bodyHTML || '<p style="color:var(--muted)">Eigenständige Gesellschaft der Gruppe.</p>';
+    hmodal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+  hmodal.querySelectorAll('[data-hclose]').forEach((el) => el.addEventListener('click', closeHM));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && hmodal.classList.contains('open')) closeHM(); });
+
+  document.querySelectorAll('.showcase .hold').forEach((hold) => {
+    const head = hold.querySelector('.hold__head');
+    if (!head) return;
+
+    // Logo/Code in umrandetes Kästchen hüllen
+    const mark = head.querySelector('.hold__logo, .hold__code');
+    if (mark && !mark.parentElement.classList.contains('hold__logobox')) {
+      const box = document.createElement('span');
+      box.className = 'hold__logobox';
+      mark.replaceWith(box);
+      box.appendChild(mark);
+    }
+
+    // Anzahl Töchter → Fuß mit Zahl + Pfeil
+    const body = hold.querySelector('.hold__body');
+    const total = hold.querySelectorAll('.hold__list > li').length;
+    if (!head.querySelector('.hold__foot')) {
+      const foot = document.createElement('div');
+      foot.className = 'hold__foot';
+      foot.innerHTML = `<span class="cnt"><b>${total || '—'}</b><i>Unternehmen</i></span><span class="arr">${arrowSvg}</span>`;
+      head.appendChild(foot);
+    }
+
+    // Klick öffnet Popup (echte Link-Karten wie Foundation navigieren normal)
+    if (hold.tagName !== 'A') {
+      hold.addEventListener('click', () => {
+        const sector = head.querySelector('.hold__sector')?.textContent || '';
+        const name = head.querySelector('.hold__name')?.textContent || '';
+        openHM(sector, name, body ? body.innerHTML : '');
+      });
+    }
+  });
+
 })();

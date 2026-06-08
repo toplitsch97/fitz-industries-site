@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23050607'/%3E%3Ctext x='16' y='24' font-family='Arial Black,Impact' font-weight='900' font-size='22' fill='%2386a8b8' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E" />
-  <link rel="stylesheet" href="css/styles.css?v=24" />
+  <link rel="stylesheet" href="css/styles.css?v=38" />
 </head>
 <body>
   <!-- Grain / cinematic overlay -->
@@ -135,12 +135,38 @@
     <!-- PORTFOLIO / HOLDING-STRUKTUR -->
     <section class="showcase" id="companies">
       <div class="showcase__intro">
+       <div class="showcase__intro-text">
         <p class="kicker">— Unser Netzwerk</p>
         <h2>Vier Holdings.<br/>6&nbsp;Aktiengesellschaften.<br/><span class="gold">Über 50 Unternehmen.</span></h2>
         <p class="showcase__hint">Eine Gruppe — vier Holdings und sechs Aktiengesellschaften, über fünfzig eigenständige Unternehmen in elf Ländern, vereint unter Fitz Industries.</p>
+
+        <div class="showcase__stats">
+          <div class="sstat">
+            <span class="sstat__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V8l5-3 5 3v13M14 21V11l3-2 3 2v10M3 21h18M7 11h0M7 14h0M7 17h0"/></svg></span>
+            <span class="sstat__txt"><b>4</b><i>Holdings</i></span>
+          </div>
+          <div class="sstat">
+            <span class="sstat__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>
+            <span class="sstat__txt"><b>6</b><i>Aktiengesellschaften</i></span>
+          </div>
+          <div class="sstat">
+            <span class="sstat__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="8.5" r="2.6"/><path d="M16 14.2a5 5 0 0 1 4.5 4.8"/></svg></span>
+            <span class="sstat__txt"><b>50+</b><i>Unternehmen</i></span>
+          </div>
+        </div>
+       </div>
+
+       <div class="showcase__intro-media" aria-hidden="true">
+         <img class="bldg-img" src="assets/img/building.png" alt="" loading="lazy" decoding="async" />
+       </div>
       </div>
 
-      <div class="holds">
+      <div class="hold-head">
+        <h3 class="hold-head__title"><span class="hold-head__bar"></span>Unsere Holdings</h3>
+        <a class="hold-head__cta" href="#holdings" data-magnetic><span>Alle Holdings ansehen</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+
+      <div class="holds holds--grid">
 
         <!-- 01 — FHG.AG -->
         <article class="hold">
@@ -734,7 +760,7 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <div class="footer__top">
+    <div class="footer__main">
       <div class="footer__brand">
         <div class="footer__brandrow"><img src="assets/brand/fitz-wordmark-white.png" alt="Fitz Industries" /></div>
         <!-- TODO: Instagram-href durch echtes Profil ersetzen -->
@@ -745,15 +771,34 @@
           <span class="footer__social-label">Folgen Sie uns</span>
         </div>
       </div>
-      <p>Eine globale Unternehmensgruppe vereint unter dem Dach bedingungsloser Qualität und weitsichtiger Exzellenz.</p>
-    </div>
-    <div class="footer__cols">
-      <div><h4>Navigation</h4><a href="#about">Über Uns</a><a href="#companies">Unternehmen</a><a href="#holdings">Beteiligungen</a><a href="#heritage">Präsenz</a><a href="#reviews">Bewertungen</a><a href="#foundation">Stiftung</a><a href="#contact" data-contact-open>Kontakt</a></div>
-      <div><h4>Holdings &amp; AGs</h4><span>Fitz Holding Group AG</span><span>Riverside Lifestyle Holding AG</span><span>Fitz AG</span><span>Fitz Investment Holding AG</span></div>
-      <div><h4>&nbsp;</h4><span>Fitz Group AG</span><span>Capital 1 AG</span><span>Asia Swiss Group</span><span>FitzFoundation AG</span></div>
+      <p class="footer__desc">Eine globale Unternehmensgruppe vereint unter dem Dach bedingungsloser Qualität und weitsichtiger Exzellenz.</p>
+      <div class="footer__col">
+        <h4>Navigation</h4>
+        <div class="footer__navgrid">
+          <a href="#about">Über Uns</a>
+          <a href="#holdings">Beteiligungen</a>
+          <a href="#heritage">Präsenz</a>
+          <a href="#companies">Unternehmen</a>
+          <a href="#foundation">Stiftung</a>
+          <a href="#contact" data-contact-open>Kontakt</a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h4>Holdings &amp; AGs</h4>
+        <div class="footer__holdgrid">
+          <span>Fitz Holding Group AG</span>
+          <span>Fitz Group AG</span>
+          <span>Riverside Lifestyle Holding AG</span>
+          <span>Capital 1 AG</span>
+          <span>Fitz AG</span>
+          <span>Asia Swiss Group</span>
+          <span>Fitz Investment Holding AG</span>
+          <span>FitzFoundation AG</span>
+        </div>
+      </div>
     </div>
     <div class="footer__bottom">
-      <span>© 2026 Fitz Industries · Gegründet 2003 von Fitz M.</span>
+      <span>© 2025 Fitz Industries · Gegründet 2003 von Fitz M.</span>
       <span class="footer__legal">Marken &amp; Logos sind Eigentum der jeweiligen Unternehmen.</span>
       <span class="gold">fitz-industries.ch</span>
     </div>
@@ -778,6 +823,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
   <script src="js/cursor.js?v=2"></script>
-  <script src="js/main.js?v=10"></script>
+  <script src="js/main.js?v=15"></script>
 </body>
 </html>
