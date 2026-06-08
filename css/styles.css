@@ -308,21 +308,21 @@ a.hold:hover{transform:translateY(-3px)}
 .hold-head__cta:hover svg{transform:translateX(3px)}
 
 /* ===== Holdings als 4-Spalten-Kachel-Grid ===== */
-.holds--grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
-.holds--grid .hold{border-radius:16px}
+.holds--grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;align-items:stretch}
+.holds--grid .hold{border-radius:16px;display:flex;flex-direction:column;height:100%}
 .holds--grid .hold__body{display:none!important}        /* Details kommen ins Popup */
 .holds--grid .hold__cta{display:none}                    /* horizontaler CTA entfällt */
-.holds--grid .hold__head{flex-direction:column;align-items:stretch;flex-wrap:nowrap;gap:0;min-height:300px;padding:1.5rem 1.4rem 1.4rem}
+.holds--grid .hold__head{flex:1 1 auto;flex-direction:column;align-items:stretch;flex-wrap:nowrap;gap:0;min-height:300px;padding:1.5rem 1.4rem 1.4rem}
 .holds--grid .hold__photo{opacity:.5}
 .holds--grid .hold:hover .hold__photo{opacity:.7}
 .holds--grid .hold__head::after{background:linear-gradient(180deg,rgba(7,9,11,.55) 0%,rgba(7,9,11,.78) 52%,rgba(7,9,11,.95) 100%)}
 .holds--grid .hold__no{position:absolute;top:1.3rem;left:1.4rem;font-size:1.05rem}
-.holds--grid .hold__logobox{align-self:flex-start;margin:2.7rem 0 auto}
+.holds--grid .hold__logobox{align-self:flex-start;margin:2.7rem 0 0}
 .holds--grid .hold__id{border-left:0;padding-left:0;gap:.5rem;margin-top:1.3rem}
 .holds--grid .hold__name{order:1;font-family:var(--sans);font-size:clamp(1.12rem,1.5vw,1.4rem);line-height:1.18}
 .holds--grid .hold__sector{order:2;color:var(--muted);letter-spacing:.18em}
 .holds--grid .hold__foot{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;
-  margin-top:1.4rem;padding-top:1.2rem;border-top:1px solid rgba(134,168,184,.16)}
+  margin-top:auto;padding-top:1.2rem;border-top:1px solid rgba(134,168,184,.16)}
 .holds--grid .hold__foot .cnt{display:flex;flex-direction:column;line-height:1.05}
 .holds--grid .hold__foot .cnt b{font-family:var(--display);font-size:1.5rem;color:#fff}
 .holds--grid .hold__foot .cnt i{font-style:normal;font-size:.54rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-top:.34rem}
