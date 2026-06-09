@@ -158,10 +158,14 @@
       });
     });
 
-    /* ---------- holding blocks: staggered reveal (portfolio + Beteiligungen) ---------- */
+    /* ---------- holding blocks: staggered reveal (portfolio + Beteiligungen) ----------
+       once + clearProps: Animation läuft genau einmal durch und entfernt danach
+       alle Inline-Transforms — sonst bleiben die Kacheln auf unterschiedlichen
+       y-Offsets „hängen" und stehen nicht mehr auf einer Linie. */
     gsap.from('.showcase .hold', {
       y: 30, opacity: 0, duration: 0.7, ease: 'power2.out', stagger: 0.08,
-      scrollTrigger: { trigger: '.showcase .holds', start: 'top 82%' },
+      clearProps: 'transform',
+      scrollTrigger: { trigger: '.showcase .holds', start: 'top 82%', once: true },
     });
     /* opacity only — orbits use transform:translate(-50%,-50%) for centering,
        so animating transform here would break their positioning */

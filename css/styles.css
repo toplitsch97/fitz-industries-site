@@ -320,7 +320,7 @@ a.hold:hover{transform:translateY(-3px)}
 .holds--grid .hold__no{position:absolute;top:1.3rem;left:1.4rem;font-size:1.05rem}
 .holds--grid .hold__logobox{align-self:flex-start;margin:2.7rem 0 0}
 .holds--grid .hold__id{border-left:0;padding-left:0;gap:.5rem;margin-top:1.3rem}
-.holds--grid .hold__name{order:1;font-family:var(--sans);font-size:clamp(1.12rem,1.5vw,1.4rem);line-height:1.18}
+.holds--grid .hold__name{order:1;font-family:var(--sans);font-size:clamp(1.12rem,1.5vw,1.4rem);line-height:1.18;min-height:2.36em;display:flex;align-items:flex-start}
 .holds--grid .hold__sector{order:2;color:var(--muted);letter-spacing:.18em}
 .holds--grid .hold__foot{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;
   margin-top:auto;padding-top:1.2rem;border-top:1px solid rgba(134,168,184,.16)}
