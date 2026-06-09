@@ -255,9 +255,10 @@ a.hold:hover{transform:translateY(-3px)}
   -webkit-mask:linear-gradient(180deg,#000 70%,transparent 99%),linear-gradient(90deg,transparent 0,#000 12%);
   -webkit-mask-composite:source-in;mask:linear-gradient(180deg,#000 70%,transparent 99%),linear-gradient(90deg,transparent 0,#000 12%);mask-composite:intersect}
 @media(max-width:900px){
-  .showcase__intro{grid-template-columns:1fr;gap:2.4rem;padding-top:7vh}
-  .showcase__intro-media{position:relative;right:0;bottom:0;order:-1;height:clamp(220px,52vw,360px);justify-content:center}
-  .bldg-img{height:100%}
+  .showcase__intro{grid-template-columns:1fr;gap:1.8rem;padding-top:7vh}
+  .showcase__intro-media{position:relative;right:0;bottom:0;order:-1;height:auto;margin:0 auto;justify-content:center}
+  .bldg-img{height:auto;width:min(76%,340px);max-width:none;object-position:center top;
+    -webkit-mask:linear-gradient(180deg,#000 74%,transparent 100%);mask:linear-gradient(180deg,#000 74%,transparent 100%)}
 }
 
 .holds{gap:1.15rem}
